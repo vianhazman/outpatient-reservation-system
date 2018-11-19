@@ -36,7 +36,7 @@ public class PenangananModel implements Serializable {
 	@Column(name = "waktu", nullable = false)
 	private Date waktu;
 	
-	@OneToMany(mappedBy="penanganan", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="id", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<ObatModel> daftarObat;
 	
 	public void setId(long id) {

@@ -43,7 +43,7 @@ public class RujukanRawatJalanModel implements Serializable {
 	@Column(name = "status", nullable = false)
 	private int status;
 	
-	@OneToMany(mappedBy="rujukan_rawat_jalan", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="id", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<PenangananModel> daftarPenanganan;
 
 	public void setId(long id) {

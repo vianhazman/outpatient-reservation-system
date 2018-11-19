@@ -42,7 +42,7 @@ public class JadwalPoliModel implements Serializable {
 	@JsonIgnore
 	private DokterModel dokter;
 	
-	@OneToMany(mappedBy="jadwal_poli", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="id", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<RujukanRawatJalanModel> daftarRujukanRawatJalan;
 
 	public void setId(long id) {
