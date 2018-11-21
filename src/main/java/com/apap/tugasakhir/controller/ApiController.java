@@ -28,8 +28,6 @@ public class ApiController {
 	
 	@Autowired
 	webService web;
-	
-
 		
 	@GetMapping(value= "/poli/jadwal/dokter-available")
 	public List<DokterModel> availableDoctor(@RequestParam("date") String date) {
