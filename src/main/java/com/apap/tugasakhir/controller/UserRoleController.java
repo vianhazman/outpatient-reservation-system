@@ -22,9 +22,10 @@ public class UserRoleController {
 
 	@RequestMapping( value = "/addUser", method = RequestMethod.POST)
 	private String addUserSubmit(@ModelAttribute UserRoleModel user, Model model) {
-
+			System.out.println(user.getUsername());
 			userService.addUser(user);
-		return "home";
+			model.addAttribute("msg", user);
+		return "login";
 	}
 	
 	public boolean validatePassword(String password) {
