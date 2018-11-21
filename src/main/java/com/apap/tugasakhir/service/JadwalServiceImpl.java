@@ -21,4 +21,19 @@ public class JadwalServiceImpl implements JadwalService {
 		return jadwalDb.findAll();
 	}
 
+	@Override
+	public JadwalPoliModel getJadwalById(long id) {
+		return jadwalDb.findJadwalById(id);
+	}
+	
+	@Override
+	public void update(long id, JadwalPoliModel jadwal) {
+		JadwalPoliModel oldJadwal = this.getJadwalById(id);
+		oldJadwal.setJamMulai(jadwal.getJamMulai());
+		oldJadwal.setJamSelesai(jadwal.getJamSelesai());
+		oldJadwal.setTanggal(jadwal.getTanggal());
+		oldJadwal.setDokter(jadwal.getDokter());
+		oldJadwal.setPoli(jadwal.getPoli());
+	}
+
 }
