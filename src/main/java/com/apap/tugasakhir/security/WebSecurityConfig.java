@@ -23,6 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers("/css/**").permitAll()
 			.antMatchers("/js/**").permitAll()
+			.antMatchers("/user/**").permitAll()
 			.antMatchers("/staff/**").hasAnyAuthority("ROLE_STAFF")
 			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
 			.anyRequest().authenticated()
@@ -34,19 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
 			.permitAll();
-	}
-
-
-	@Autowired
-	public void configureGlobal (AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-		.passwordEncoder(encoder())
-		.withUser("staff").password(encoder().encode("password"))
-		.roles("STAFF");
-		auth.inMemoryAuthentication()
-		.passwordEncoder(encoder())
-		.withUser("admin").password(encoder().encode("password"))
-		.roles("ADMIN");
 	}
 
 	@Autowired
