@@ -36,4 +36,10 @@ public class JadwalServiceImpl implements JadwalService {
 		oldJadwal.setPoli(jadwal.getPoli());
 	}
 
+	@Override
+	public void add(JadwalPoliModel jadwal) {
+		jadwalDb.save(jadwal);
+		
+	}
+
 }
