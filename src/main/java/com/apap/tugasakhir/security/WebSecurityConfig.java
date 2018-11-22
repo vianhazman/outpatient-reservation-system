@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/rawat-jalan/poli/jadwal/dokter-available").permitAll()
 			.antMatchers("/staff/**").hasAnyAuthority("ROLE_STAFF")
 			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/rawat-jalan/**").hasAnyAuthority("ROLE_ADMIN")
 			.anyRequest().authenticated()
 			.and().formLogin().successHandler(successHandler)
 			.and()
