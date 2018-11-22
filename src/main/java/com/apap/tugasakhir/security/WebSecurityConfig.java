@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/css/**").permitAll()
 			.antMatchers("/js/**").permitAll()
 			.antMatchers("/user/**").permitAll()
+			.antMatchers("/rawat-jalan/poli/jadwal/dokter-available").permitAll()
 			.antMatchers("/staff/**").hasAnyAuthority("ROLE_STAFF")
 			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
 			.antMatchers("/rawat-jalan/**").hasAnyAuthority("ROLE_ADMIN")

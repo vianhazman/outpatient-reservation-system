@@ -36,11 +36,9 @@ public class JadwalPoliModel implements Serializable {
 	@Column(name = "jam_selesai", nullable = false)
 	private Time jamSelesai;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dokter_id", referencedColumnName = "id", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
-	private DokterModel dokter;
+	@NotNull
+	@Column(name = "dokter_id", nullable = false)
+	private long dokter;
 	
 	@OneToMany(mappedBy="id", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<RujukanRawatJalanModel> daftarRujukanRawatJalan;
@@ -85,11 +83,11 @@ public class JadwalPoliModel implements Serializable {
 		this.jamSelesai = jamSelesai;
 	}
 	
-	public void setDokter(DokterModel dokter) {
-		this.dokter = dokter;
+	public void setDokter(long id) {
+		this.dokter = id;
 	}
 
-	public DokterModel getDokter() {
+	public long getDokter() {
 		return dokter;
 	}
 	
