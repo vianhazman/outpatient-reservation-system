@@ -7,8 +7,8 @@ Web service yang disediakan:
 
 ### Mengambil list dokter yang tersedia
 
-Method: GET
-Endpoint: https://apap-6-7.herokuapp.com/rawat-jalan/poli/jadwal/dokter-available?date=YYYY-MM-dd
+-Method: GET
+-Endpoint: https://apap-6-7.herokuapp.com/rawat-jalan/poli/jadwal/dokter-available?date=YYYY-MM-dd
 
 Contoh Response
 ```markdown
