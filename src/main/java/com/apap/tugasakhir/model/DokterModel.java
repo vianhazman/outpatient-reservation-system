@@ -10,20 +10,11 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name = "dokter")
 public class DokterModel implements Serializable {	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private long id;
-	
-	@NotNull
-	@Size(max = 255)
-	@Column(name = "nama", nullable = false)
+
 	private String nama;
-	
-	@OneToMany(mappedBy="dokter", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<JadwalPoliModel> daftarJadwalPoli;
 
 	public void setId(long id) {
 		this.id = id;
@@ -41,11 +32,4 @@ public class DokterModel implements Serializable {
 		return nama;
 	}
 	
-	public void setDaftarJadwalPoli(List<JadwalPoliModel> daftarJadwalPoli) {
-		this.daftarJadwalPoli = daftarJadwalPoli;
-	}
-
-	public List<JadwalPoliModel> getDaftarJadwalPoli() {
-		return daftarJadwalPoli;
-	}
 }

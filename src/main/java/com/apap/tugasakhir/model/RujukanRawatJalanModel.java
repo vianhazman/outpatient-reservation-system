@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import com.apap.tugasakhir.rest.webService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -18,11 +20,9 @@ public class RujukanRawatJalanModel implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pasien_id", referencedColumnName = "id", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
-	private PasienModel pasien;
+	@NotNull
+	@Column(name = "pasien_id", nullable = false)
+	private long idPasien;
 	
 	@NotNull
 	@Size(max = 255)
@@ -54,12 +54,12 @@ public class RujukanRawatJalanModel implements Serializable {
 		return id;
 	}
 	
-	public void setPasien(PasienModel pasien) {
-		this.pasien = pasien;
+	public void setPasien(long id) {
+		this.idPasien=id;
 	}
 
-	public PasienModel getPasien() {
-		return pasien;
+	public long getPasien() { 
+		return idPasien;
 	}
 	
 	public void setNama(String nama) {
