@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## SI Rawat Jalan
 
 You can use the [editor on GitHub](https://github.com/vianhazman/TA_6_7/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
