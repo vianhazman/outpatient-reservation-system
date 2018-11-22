@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.apap.tugasakhir.model.DokterModel;
 import com.apap.tugasakhir.model.JadwalPoliModel;
 import com.apap.tugasakhir.model.PoliModel;
-import com.apap.tugasakhir.service.DokterService;
+import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.JadwalService;
 import com.apap.tugasakhir.service.PoliService;
 
@@ -26,7 +26,7 @@ public class PoliController {
 	private PoliService poliService;
 
 	@Autowired
-	private DokterService dokterService;
+	webService web;
 
 	@Autowired
 	private JadwalService jadwalService;
@@ -36,6 +36,7 @@ public class PoliController {
 		List<JadwalPoliModel> listJadwal = jadwalService.findAll();
 		String[] days;
 		days = new String[] { "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+
 		model.addAttribute("listJadwal", listJadwal);
 		model.addAttribute("days", days);
 		return "view-jadwal";
@@ -56,7 +57,7 @@ public class PoliController {
 
 		List<PoliModel> listPoli = poliService.findAll();
 		List<Long> poliIdList = new ArrayList<Long>();
-		List<DokterModel> listDokter = dokterService.findAll();
+		List<DokterModel> listDokter = web.getAllDokter();
 
 		model.addAttribute("listPoli", listPoli);
 		model.addAttribute("poliIdList", poliIdList);
@@ -74,7 +75,7 @@ public class PoliController {
 
 	@RequestMapping(value = "/rawat-jalan/poli/jadwal/tambah", method = RequestMethod.GET)
 	private String addJadwal(Model model) {
-		List<DokterModel> listDokter = dokterService.findAll();
+		List<DokterModel> listDokter = web.getAllDokter();
 		List<PoliModel> listPoli = poliService.findAll();
 		model.addAttribute("listPoli", listPoli);
 		model.addAttribute("listDokter", listDokter);

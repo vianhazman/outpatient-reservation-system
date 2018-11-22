@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apap.tugasakhir.model.JadwalPoliModel;
-import com.apap.tugasakhir.repository.JadwalPoliDb;
+import com.apap.tugasakhir.repository.JadwalPoliDB;
 
 @Service
 @Transactional
 public class JadwalServiceImpl implements JadwalService {
 	@Autowired
-	private JadwalPoliDb jadwalDb;
+	private JadwalPoliDB jadwalDb;
 
 	@Override
 	public List<JadwalPoliModel> findAll() {
@@ -23,7 +23,7 @@ public class JadwalServiceImpl implements JadwalService {
 
 	@Override
 	public JadwalPoliModel getJadwalById(long id) {
-		return jadwalDb.findJadwalById(id);
+		return jadwalDb.findById(id);
 	}
 	
 	@Override
