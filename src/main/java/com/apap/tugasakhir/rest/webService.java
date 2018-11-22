@@ -11,6 +11,7 @@ import com.apap.tugasakhir.model.DokterModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.wrapper.GetDokterWrapper;
 import com.apap.tugasakhir.wrapper.GetPasienWrapper;
+import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
 @Service
 public class webService {
@@ -56,5 +57,13 @@ public class webService {
 			String path = Setting.siAppointment+"/updatePasien/";
 			String str = restTemplate.postForEntity(path, pasien, String.class).getBody();
 			return str;
+		}
+		
+		//post to si laboratorium 
+		public String postLaboratoriumRequest(PostLaboratoriumWrapper req) {
+			String path ="/";
+			String str = restTemplate.postForEntity(path, req, String.class).getBody();
+			return str;
+
 		}
 }
