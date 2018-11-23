@@ -11,5 +11,4 @@ import com.apap.tugasakhir.model.JadwalPoliModel;
 public interface JadwalPoliDb extends JpaRepository<JadwalPoliModel, Long> {
 	JadwalPoliModel findByTanggalAndDokter(Date tanggal, long dokter);
 	JadwalPoliModel findById(long id);
-	
 }
