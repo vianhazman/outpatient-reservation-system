@@ -115,8 +115,8 @@
 				    	</tr>
 				  	</thead>
 				  	<tbody>
-				    	<tr>
-				      		<th th:text="${penanganan.id_pasien_rawat_jalan}" scope="row"></th>
+				    	<tr th:each="penanganan : ${penanganan}">
+				      		<th th:text="${penanganan.idPasienRawatJalan}" scope="row"></th>
 				      		<td th:text="${penanganan.rujukanRawatJalan.namaPasien}"></td>
 				      		<td th:text="${penanganan.rujukanRawatJalan.jadwalPoli.poli.nama}"></td>
 				      		<td th:text="${penanganan.waktu}"></td>
