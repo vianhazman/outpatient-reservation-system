@@ -26,9 +26,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-@RestController
-@RequestMapping("/rawat-jalan/obat")
+/**
+ * @RestController
+ * @RequestMapping("/rawat-jalan/obat")
+ *
+ */
 public class ObatController {
+	/**
 	@Autowired
 	private ObatService obatService;
 	
@@ -53,4 +57,5 @@ public class ObatController {
 		ObatDetail detail = restTemplate.postForObject(path, obat, ObatDetail.class);
 		return detail;
 	}
+	 */
 }

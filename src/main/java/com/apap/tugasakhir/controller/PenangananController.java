@@ -29,45 +29,17 @@ public class PenangananController {
 		return "lihat-penanganan";
 	}
 	
-	@RequestMapping(value="/admin/rawat-jalan/pasien/penanganan/tambah", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/rawat-jalan/pasien/penanganan/tambah/obat", method = RequestMethod.POST)
 	private String tambahPenangananObat(@ModelAttribute PenangananModel penanganan, Model model) {
 		
 		
 		return "lihat-penanganan";
 	}
 	
-	@RequestMapping(value="/admin/rawat-jalan/pasien/penanganan/tambah", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/rawat-jalan/pasien/penanganan/tambah/lab", method = RequestMethod.POST)
 	private String tambahPenangananLab(@ModelAttribute PenangananModel penanganan, Model model) {
 		
 		
 		return "lihat-penanganan";
 	}
-	
-	/**
-	@RequestMapping(value="/pegawai/tambah", method = RequestMethod.POST)
-	private String tambahPegawaiSubmit(@ModelAttribute PegawaiModel pegawai, @RequestParam("id_jabatan") Long id_jabatan, Model model) {
-		String nipTahunMasuk = pegawaiService.getPegawaiTahunMasukSama(pegawai.getTahunMasuk());
-		InstansiModel instansi = instansiService.getInstansiDetailById(pegawai.getInstansi().getId());
-		
-		String nipTanggalLahir = "";
-		Date tanggalLahir = pegawai.getTanggalLahir();
-		String[] tglLahir = (String.valueOf(tanggalLahir).split("-"));
-		for(int i = 0; i < tglLahir.length; i++) {
-			nipTanggalLahir = tglLahir[i].substring(tglLahir[i].length()-2, tglLahir[i].length()) + nipTanggalLahir;
-		}
-		
-		pegawai.setNip("" + pegawai.getInstansi().getId() + nipTanggalLahir + pegawai.getTahunMasuk() + nipTahunMasuk); 
-		pegawaiService.addPegawai(pegawai);
-		
-		JabatanPegawaiModel jabatanPegawai = new JabatanPegawaiModel();
-		JabatanModel jabatan = jabatanService.getJabatanDetailById(id_jabatan);
-		jabatanPegawai.setJabatan(jabatan);
-		jabatanPegawai.setPegawai(pegawai);
-		jabatanPegawaiService.addJabatanPegawai(jabatanPegawai);
-		
-		model.addAttribute("nip", pegawai.getNip());
-		model.addAttribute("success", "ditambahkan");
-		return "success";
-	}
-	 */
 }
