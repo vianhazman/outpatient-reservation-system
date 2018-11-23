@@ -66,4 +66,11 @@ public class webService {
 			return str;
 
 		}
+		
+		//get pasien rawat jalan
+		public List<PasienModel> getAllPasienRawatJalan() {
+			String path = Setting.siAppointment+"/getAllPasienRawatJalan/";
+			List<PasienModel> returnList = restTemplate.getForEntity(path, GetPasienWrapper.class).getBody().getResult();
+			return returnList;
+		}
 }
