@@ -23,7 +23,7 @@ public class JadwalServiceImpl implements JadwalService {
 
 	@Override
 	public JadwalPoliModel getJadwalById(long id) {
-		return jadwalDb.findById(id);
+		return jadwalDb.findById(id).get();
 	}
 	
 	@Override

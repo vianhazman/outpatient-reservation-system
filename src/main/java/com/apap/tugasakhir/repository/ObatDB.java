@@ -1,10 +1,11 @@
 package com.apap.tugasakhir.repository;
 
-import com.apap.tugasakhir.model.JadwalPoliModel;
+import com.apap.tugasakhir.model.ObatModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface JadwalPoliDB extends JpaRepository<JadwalPoliModel, Long>{
+public interface ObatDB extends JpaRepository<ObatModel, Long>{
+	
 
 }
