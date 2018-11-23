@@ -38,6 +38,7 @@ public class PoliController {
 		days = new String[] { "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
 		model.addAttribute("listJadwal", listJadwal);
 		model.addAttribute("days", days);
+		
 		return "view-jadwal";
 	}
 
