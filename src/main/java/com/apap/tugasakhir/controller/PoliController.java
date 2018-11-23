@@ -55,11 +55,9 @@ public class PoliController {
 		model.addAttribute("newJadwal", new JadwalPoliModel());
 
 		List<PoliModel> listPoli = poliService.findAll();
-		List<Long> poliIdList = new ArrayList<Long>();
 		List<DokterModel> listDokter = web.getAllDokter();
 
 		model.addAttribute("listPoli", listPoli);
-		model.addAttribute("poliIdList", poliIdList);
 		model.addAttribute("listDokter", listDokter);
 		return "update-jadwal";
 	}
