@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Update Success</title>
+<title>Add Success</title>
 <object th:include="fragments/fragment :: css" th:remove="tag"></object>
 <object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
 <object th:include="fragments/fragment :: js" th:remove="tag"></object>
@@ -11,11 +11,11 @@
 	<div class="container-fluid">
 		<div class="jumbotron" style="margin-top: 1%;">
 			<div class="container">
-				<h1 class="display-5">Update Sukses!</h1>
-				<div>Jadwal berhasil diubah.</div>
+				<h1 class="display-5">Penambahan Sukses!</h1>
+				<div>Jadwal berhasil ditambahkan.</div>
 			</div>
 		</div>
-		<br> <a th:href="@{'/rawat-jalan/poli/jadwal/ubah/' + {jadwal.id}}">Kembali</a>
+		<br> <a th:href="@{/rawat-jalan/poli/jadwal/tambah}">Kembali</a>
 		<div class="row"></div>
 	</div>
 	
