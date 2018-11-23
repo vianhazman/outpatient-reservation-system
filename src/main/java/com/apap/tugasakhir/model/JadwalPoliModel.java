@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -32,11 +34,13 @@ public class JadwalPoliModel implements Serializable {
 	@NotNull
 	@Column(name = "jam_mulai", nullable = false)
 	//@Temporal(TemporalType.TIME)
+
 	private Time jamMulai;
 	
 	@NotNull
 	@Column(name = "jam_selesai", nullable = false)
 	//@Temporal(TemporalType.TIME)
+
 	private Time jamSelesai;
 
 	@NotNull
