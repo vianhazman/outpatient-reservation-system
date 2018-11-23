@@ -101,4 +101,13 @@ public class RujukanRawatJalanModel implements Serializable {
 	public List<PenangananModel> getDaftarPenanganan() {
 		return daftarPenanganan;
 	}
+
+	public long getIdPasien() {
+		return idPasien;
+	}
+
+	public void setIdPasien(long idPasien) {
+		this.idPasien = idPasien;
+	}
+	
 }

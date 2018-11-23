@@ -18,4 +18,8 @@ public class StatusPasienModel implements Serializable {
 	public void setJenis(String jenis) {
 		this.jenis = jenis;
 	}
+	
+	public String toString() {
+		return jenis;
+	}
 }
