@@ -26,11 +26,8 @@ public class ObatModel implements Serializable {
 	@Column(name = "jumlah", nullable = false)
 	private int jumlah;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "poli_id", referencedColumnName = "id", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
-	private PoliModel poli;
+	@OneToMany(mappedBy="obat", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	private List<PenangananModel> daftarPenanganan;
 
 	public void setId(long id) {
 		this.id = id;
@@ -56,11 +53,11 @@ public class ObatModel implements Serializable {
 		return jumlah;
 	}
 	
-	public void setPoli(PoliModel poli) {
-		this.poli = poli;
+	public void setDaftarPenanganan(List<PenangananModel> daftarPenanganan) {
+		this.daftarPenanganan = daftarPenanganan;
 	}
 
-	public PoliModel getPoli() {
-		return poli;
+	public List<PenangananModel> getDaftarPenanganan() {
+		return daftarPenanganan;
 	}
 }
