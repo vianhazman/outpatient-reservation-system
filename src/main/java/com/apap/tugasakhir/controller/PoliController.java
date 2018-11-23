@@ -36,8 +36,10 @@ public class PoliController {
 		List<JadwalPoliModel> listJadwal = jadwalService.findAll();
 		String[] days;
 		days = new String[] { "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+		List<DokterModel> listDokter = web.getAllDokter();
 		model.addAttribute("listJadwal", listJadwal);
 		model.addAttribute("days", days);
+		model.addAttribute("listDokter", listDokter);
 		
 		return "view-jadwal";
 	}

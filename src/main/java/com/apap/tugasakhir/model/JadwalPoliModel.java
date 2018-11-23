@@ -1,6 +1,7 @@
 package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
@@ -30,11 +31,13 @@ public class JadwalPoliModel implements Serializable {
 	
 	@NotNull
 	@Column(name = "jam_mulai", nullable = false)
-	private String jamMulai;
+	//@Temporal(TemporalType.TIME)
+	private Time jamMulai;
 	
 	@NotNull
 	@Column(name = "jam_selesai", nullable = false)
-	private String jamSelesai;
+	//@Temporal(TemporalType.TIME)
+	private Time jamSelesai;
 
 	@NotNull
 	@Column(name = "dokter_id", nullable = false)
@@ -67,19 +70,19 @@ public class JadwalPoliModel implements Serializable {
 		return tanggal;
 	}
 	
-	public String getJamMulai() {
+	public Time getJamMulai() {
 		return jamMulai;
 	}
 
-	public void setJamMulai(String jamMulai) {
+	public void setJamMulai(Time jamMulai) {
 		this.jamMulai = jamMulai;
 	}
 
-	public String getJamSelesai() {
+	public Time getJamSelesai() {
 		return jamSelesai;
 	}
 
-	public void setJamSelesai(String jamSelesai) {
+	public void setJamSelesai(Time jamSelesai) {
 		this.jamSelesai = jamSelesai;
 	}
 	
