@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "jadwal_poli")
 public class JadwalPoliModel implements Serializable {	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
