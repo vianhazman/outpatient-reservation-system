@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apap.tugasakhir.model.JadwalPoliModel;
-import com.apap.tugasakhir.repository.JadwalPoliDB;
+import com.apap.tugasakhir.repository.JadwalPoliDb;
 
 @Service
 @Transactional
 public class JadwalServiceImpl implements JadwalService {
 	@Autowired
-	private JadwalPoliDB jadwalDb;
+	private JadwalPoliDb jadwalDb;
 
 	@Override
 	public List<JadwalPoliModel> findAll() {

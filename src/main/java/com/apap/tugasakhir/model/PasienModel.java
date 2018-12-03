@@ -1,8 +1,8 @@
 package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
-import com.apap.tugasakhir.wrapper.statusPasienWrapper;
 
 public class PasienModel implements Serializable {	
 
@@ -30,20 +30,21 @@ public class PasienModel implements Serializable {
 		this.nama = nama;
 	}
 
-	public statusPasienWrapper getStatusPasien() {
+	
+
+	public StatusPasienModel getStatusPasien() {
 		return statusPasien;
 	}
 
-	public void setStatusPasien(statusPasienWrapper statusPasien) {
+	public void setStatusPasien(StatusPasienModel statusPasien) {
 		this.statusPasien = statusPasien;
 	}
 
-	public int getPoliRujukan() {
+	public PoliRujukanModel getPoliRujukan() {
 		return poliRujukan;
 	}
 
-	public void setPoliRujukan(int poliRujukan) {
+	public void setPoliRujukan(PoliRujukanModel poliRujukan) {
 		this.poliRujukan = poliRujukan;
 	}
-
 }
