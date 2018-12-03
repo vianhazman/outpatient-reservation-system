@@ -1,11 +1,11 @@
-package com.apap.tugasakhir.rest;
+package com.apap.tugasakhir.wrapper;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ObatDetail {
+public class GetObatWrapper {
 	@JsonProperty("nama")
 	private String nama;
 	
