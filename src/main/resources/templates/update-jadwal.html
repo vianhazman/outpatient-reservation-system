@@ -31,16 +31,16 @@
 										<br>
 										<tr>
 											<td>Nama Poliklinik:</td>
-											<td th:object="${poliIdList}"><select type="text" name="idPoli">
+											<td><select type="text" name="poli">
 													<option th:each="poli : ${listPoli}"
-														th:value="${poli.id}" th:text="${poli.nama}"></option>
+														th:value="${poli.id}" th:text="${poli.nama}"th:field="*{poli}"></option>
 											</select></td>
 										</tr>
 										<tr>
 											<td>Nama Dokter:</td>
-											<td th:object="${dokterIdList}"><select type="text" name="idDokter">
+											<td><select type="text" name="idDokter">
 													<option th:each="dokter : ${listDokter}"
-														th:value="${dokter.id}" th:text="${dokter.nama}"></option>
+														th:value="${dokter.id}" th:text="${dokter.nama}" th:field="*{dokter}"></option>
 											</select></td>
 										</tr>
 										<tr>
@@ -51,13 +51,13 @@
 										</tr>
 										<tr>
 											<td>Jam Mulai:</td>
-											<td><input type="time" step="1" class="form-control"
+											<td><input type="text" class="form-control"
 												id="jamMulai" name="jamMulai" th:field="*{jamMulai}"
 												th:value="${jadwal.jamMulai}"></td>
 										</tr>
 										<tr>
 											<td>Jam Selesai:</td>
-											<td><input type="time" step="1" class="form-control"
+											<td><input type="text" class="form-control"
 												id="jamSelesai" name="jamSelesai" th:field="*{jamSelesai}"
 												th:value="${jadwal.jamSelesai}"></td>
 										</tr>

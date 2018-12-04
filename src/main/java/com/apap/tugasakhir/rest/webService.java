@@ -32,7 +32,7 @@ public class webService {
 		}
 		
 		public DokterModel getDokterId(long id) {
-			String path = "http://si-appointment.herokuapp.com/api/getDokter/"+id;
+			String path = Setting.siAppointmentJadwal+"/getDokter/"+id;
 			DokterModel dokter = restTemplate.getForEntity(path, DokterModel.class).getBody();
 			return dokter;
 		}
