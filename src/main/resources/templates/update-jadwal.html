@@ -38,7 +38,7 @@
 										</tr>
 										<tr>
 											<td>Nama Dokter:</td>
-											<td><select type="text" name="idDokter">
+											<td><select type="text" name="dokter">
 													<option th:each="dokter : ${listDokter}"
 														th:value="${dokter.id}" th:text="${dokter.nama}" th:field="*{dokter}"></option>
 											</select></td>
