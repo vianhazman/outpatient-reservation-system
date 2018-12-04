@@ -88,6 +88,7 @@ public class PoliController {
 		jadwalService.add(jadwal);
 
 		return "tambah-jadwal-success";
+		
 	}
 
 }
