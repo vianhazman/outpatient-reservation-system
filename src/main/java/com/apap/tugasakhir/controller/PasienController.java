@@ -8,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.apap.tugasakhir.model.JadwalPoliModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
+import com.apap.tugasakhir.repository.PoliDb;
 import com.apap.tugasakhir.repository.RujukanRawatJalanDb;
 import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.JadwalService;
@@ -29,6 +32,11 @@ public class PasienController {
 	private RujukanRawatJalanService rujukanService;
 	
 	@Autowired
+	PoliDb polidb;
+	
+	
+	
+	@Autowired
 	private JadwalService jadwalService;
 	
 	@RequestMapping(value = "/rawat-jalan/pasien", method = RequestMethod.GET)
@@ -39,14 +47,28 @@ public class PasienController {
 				RujukanRawatJalanModel newRujukan = new RujukanRawatJalanModel();
 				newRujukan.setPasien(pasien.getId());
 				newRujukan.setNama(pasien.getNama());
+				long selisih = Integer.MAX_VALUE;
+				JadwalPoliModel poli = new JadwalPoliModel();
+				for (JadwalPoliModel jadwal:polidb.findById(pasien.getPoliRujukan().getId()).getDaftarJadwalPoli()) {
+					long sub = jadwal.getTanggal().getTime() - pasien.getTanggalRujukan().getTime();
+					if (sub < selisih) {
+						selisih = sub;
+						poli = jadwal;
+					}
+				}
 				newRujukan.setTanggalRujuk(pasien.getTanggalRujukan());
 				newRujukan.setStatus(1);
-				System.out.println(pasien.getPoliRujukan().getId()+ " " + pasien.getPoliRujukan());
-				newRujukan.setJadwalPoli(jadwalService.getJadwalById(pasien.getPoliRujukan().getId()));
+				newRujukan.setJadwalPoli(poli);
 				rujukanDb.save(newRujukan);
 			}
 		}
 		model.addAttribute("listRujukan",rujukanService.listRujukan());
+		return "view-pasien";
+	}
+	
+	@RequestMapping(value = "/rawat-jalan/pasien", method = RequestMethod.POST)
+	private String updateStatusPasien(Model model,@RequestParam long id) {
+		rujukanDb.findById(id);
 		return "view-pasien";
 	}
 	
