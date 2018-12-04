@@ -39,6 +39,8 @@ public class PasienController {
 	@Autowired
 	private JadwalService jadwalService;
 	
+	String[] listStatusPasien = new String[] {"Mendaftar Poli", "Berada di Poli", "Selesai"};
+	
 	@RequestMapping(value = "/rawat-jalan/pasien", method = RequestMethod.GET)
 	private String viewPasienRawatJalan(Model model) {
 		List<PasienModel> draftPasien = web.getAllPasienRawatJalan();
@@ -62,12 +64,18 @@ public class PasienController {
 				rujukanDb.save(newRujukan);
 			}
 		}
+		model.addAttribute("statusPasien",listStatusPasien);
 		model.addAttribute("listRujukan",rujukanService.listRujukan());
 		return "view-pasien";
 	}
 	
 	@RequestMapping(value = "/rawat-jalan/pasien", method = RequestMethod.POST)
-	private String updateStatusPasien(Model model,@RequestParam long id) {
+	private String updateStatusPasien(Model model, @RequestParam long id) {
+		List<PasienModel> draftPasien = web.getAllPasienRawatJalan();
+		for (PasienModel pasien : draftPasien) {
+			if (pasien.getId() == id) {
+			}
+		}
 		rujukanDb.findById(id);
 		return "view-pasien";
 	}

@@ -35,7 +35,7 @@
 						<th th:text="${rujukan.nama}"></th>
 						<th th:text="${rujukan.idPasien}"></th>
 						<th th:text="${rujukan.tanggalRujuk}"></th>
-						<th th:text="'Mendaftar Poli '+${rujukan.jadwalPoli.poli.nama}"></th>
+						<th th:text="${statusPasien[rujukan.status 	- 1]}"></th>
 						<th>
 							<button th:onclick="'changeStatus('+${rujukan.id}+')'"> Ubah Status </button>
 						</th>
