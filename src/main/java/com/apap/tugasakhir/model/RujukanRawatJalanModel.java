@@ -26,8 +26,8 @@ public class RujukanRawatJalanModel implements Serializable {
 	
 	@NotNull
 	@Size(max = 255)
-	@Column(name = "nama_pasien", nullable = false)
-	private String namaPasien;
+	@Column(name = "nama", nullable = false)
+	private String nama;
 	
 	@NotNull
 	@Column(name = "tanggal_rujuk", nullable = false)
@@ -62,12 +62,12 @@ public class RujukanRawatJalanModel implements Serializable {
 		return idPasien;
 	}
 	
-	public void setNamaPasien(String namaPasien) {
-		this.namaPasien = namaPasien;
+	public void setNama(String nama) {
+		this.nama = nama;
 	}
 
-	public String getNamaPasien() {
-		return namaPasien;
+	public String getNama() {
+		return nama;
 	}
 	
 	public void setTanggalRujuk(Date tanggalRujuk) {

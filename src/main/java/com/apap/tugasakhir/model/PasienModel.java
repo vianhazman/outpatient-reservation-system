@@ -8,12 +8,6 @@ public class PasienModel implements Serializable {
 
 	private long id;
 	
-	private String nama;
-	
-	private statusPasienWrapper statusPasien;
-	
-	private int poliRujukan;
-	
 	public long getId() {
 		return id;
 	}
@@ -47,4 +41,23 @@ public class PasienModel implements Serializable {
 	public void setPoliRujukan(PoliRujukanModel poliRujukan) {
 		this.poliRujukan = poliRujukan;
 	}
+
+
+
+	private String nama;
+	
+	private StatusPasienModel statusPasien;
+	
+	private PoliRujukanModel poliRujukan;
+	
+	private Date tanggalRujukan;
+
+	public Date getTanggalRujukan() {
+		return tanggalRujukan;
+	}
+
+	public void setTanggalRujukan(Date tanggalRujukan) {
+		this.tanggalRujukan = tanggalRujukan;
+	}
+
 }

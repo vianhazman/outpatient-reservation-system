@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.apap.tugasakhir.model.JadwalPoliModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
-import com.apap.tugasakhir.repository.PoliDb;
+import com.apap.tugasakhir.repository.PoliDB;
 import com.apap.tugasakhir.repository.RujukanRawatJalanDb;
 import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.JadwalService;
@@ -32,7 +32,7 @@ public class PasienController {
 	private RujukanRawatJalanService rujukanService;
 	
 	@Autowired
-	PoliDb polidb;
+	PoliDB polidb;
 	
 	
 	
@@ -51,7 +51,7 @@ public class PasienController {
 				newRujukan.setNama(pasien.getNama());
 				long selisih = Integer.MAX_VALUE;
 				JadwalPoliModel poli = new JadwalPoliModel();
-				for (JadwalPoliModel jadwal:polidb.findById(pasien.getPoliRujukan().getId()).getDaftarJadwalPoli()) {
+				for (JadwalPoliModel jadwal:polidb.findById(pasien.getPoliRujukan().getId()).get().getDaftarJadwalPoli()) {
 					long sub = jadwal.getTanggal().getTime() - pasien.getTanggalRujukan().getTime();
 					if (sub < selisih) {
 						selisih = sub;

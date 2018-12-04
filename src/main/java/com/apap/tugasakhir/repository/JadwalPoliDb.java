@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.apap.tugasakhir.model.JadwalPoliModel;
 
 @Repository
-public interface JadwalPoliDB extends JpaRepository<JadwalPoliModel, Long> {
+public interface JadwalPoliDb extends JpaRepository<JadwalPoliModel, Long> {
 	JadwalPoliModel findByTanggalAndDokter(Date tanggal, long dokter);
 	JadwalPoliModel findById(long id);
 }

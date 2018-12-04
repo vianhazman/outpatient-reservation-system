@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apap.tugasakhir.model.DokterModel;
-import com.apap.tugasakhir.repository.JadwalPoliDB;
+import com.apap.tugasakhir.repository.JadwalPoliDb;
 import com.apap.tugasakhir.rest.webService;
 
 @RestController
@@ -19,7 +19,7 @@ import com.apap.tugasakhir.rest.webService;
 public class ApiController {
 	
 	@Autowired
-	JadwalPoliDB poliDb;
+	JadwalPoliDb poliDb;
 	
 	@Autowired
 	webService web;
