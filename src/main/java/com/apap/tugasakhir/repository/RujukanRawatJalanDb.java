@@ -1,10 +1,15 @@
 package com.apap.tugasakhir.repository;
 
-import com.apap.tugasakhir.model.RujukanRawatJalanModel;
+import java.util.Date;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface RujukanRawatJalanDB extends JpaRepository<RujukanRawatJalanModel, Long>{
+import com.apap.tugasakhir.model.PasienModel;
+import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 
+@Repository
+public interface RujukanRawatJalanDb extends JpaRepository<RujukanRawatJalanModel, Long> {
+	RujukanRawatJalanModel findByidPasienAndTanggalRujuk(long idPasien, Date tanggalRujuk);
+	RujukanRawatJalanModel findByTanggalRujuk(Date tanggalRujuk);
 }
