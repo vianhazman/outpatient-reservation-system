@@ -1,36 +1,34 @@
 ## SI Rawat Jalan
 
-Web service yang disediakan
--
+url: apap-6-7.herokuapp.com
 
-### Markdown
+Web service yang disediakan:
+- Mengambil list dokter yang tersedia
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Mengambil list dokter yang tersedia
 
+-Method: GET <br/>
+-Endpoint: https://apap-6-7.herokuapp.com/rawat-jalan/poli/jadwal/dokter-available?date=YYYY-MM-dd
+
+Contoh Response
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+[
+    {
+        "id": 108,
+        "nama": "Damu Habibi"
+    },
+    {
+        "id": 216,
+        "nama": "Farhunnisa Sudiati"
+    },
+    {
+        "id": 222,
+        "nama": "Clara Safina Yulianti"
+    },
+    {
+        "id": 228,
+        "nama": "Titin Tina Rahayu"
+    }
+]
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/vianhazman/TA_6_7/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

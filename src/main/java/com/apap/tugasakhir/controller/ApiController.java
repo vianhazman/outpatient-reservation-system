@@ -5,19 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.model.DokterModel;
 import com.apap.tugasakhir.repository.JadwalPoliDB;
-import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.rest.webService;
-import com.apap.tugasakhir.wrapper.GetDokterWrapper;
 
 @RestController
 @RequestMapping("/rawat-jalan")
