@@ -36,9 +36,11 @@ public class PoliController {
 		List<JadwalPoliModel> listJadwal = jadwalService.findAll();
 		String[] days;
 		days = new String[] { "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+		List<DokterModel> listDokter = web.getAllDokter();
 
 		model.addAttribute("listJadwal", listJadwal);
 		model.addAttribute("days", days);
+		model.addAttribute("listDokter", listDokter);
 		return "view-jadwal";
 	}
 
@@ -56,11 +58,9 @@ public class PoliController {
 		model.addAttribute("newJadwal", new JadwalPoliModel());
 
 		List<PoliModel> listPoli = poliService.findAll();
-		List<Long> poliIdList = new ArrayList<Long>();
 		List<DokterModel> listDokter = web.getAllDokter();
 
 		model.addAttribute("listPoli", listPoli);
-		model.addAttribute("poliIdList", poliIdList);
 		model.addAttribute("listDokter", listDokter);
 		return "update-jadwal";
 	}
@@ -88,6 +88,7 @@ public class PoliController {
 		jadwalService.add(jadwal);
 
 		return "tambah-jadwal-success";
+		
 	}
 
 }
