@@ -29,8 +29,8 @@ public class JadwalServiceImpl implements JadwalService {
 	@Override
 	public void update(long id, JadwalPoliModel jadwal) {
 		JadwalPoliModel oldJadwal = this.getJadwalById(id);
-		oldJadwal.setJamMulai(jadwal.getJamMulai());
-		oldJadwal.setJamSelesai(jadwal.getJamSelesai());
+		oldJadwal.setJamMulai(jadwal.getJamMulai().toString());
+		oldJadwal.setJamSelesai(jadwal.getJamSelesai().toString());
 		oldJadwal.setTanggal(jadwal.getTanggal());
 		oldJadwal.setDokter(jadwal.getDokter());
 		oldJadwal.setPoli(jadwal.getPoli());
