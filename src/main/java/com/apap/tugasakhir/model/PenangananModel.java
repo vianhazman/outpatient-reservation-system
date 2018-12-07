@@ -36,8 +36,11 @@ public class PenangananModel implements Serializable {
 	@Column(name = "waktu", nullable = false)
 	private Date waktu;
 	
-	@OneToMany(mappedBy="id", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<ObatModel> daftarObat;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "obat_id", referencedColumnName = "id", nullable = false)
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@JsonIgnore
+	private ObatModel obat;
 	
 	public void setId(long id) {
 		this.id = id;
@@ -79,11 +82,11 @@ public class PenangananModel implements Serializable {
 		return deskripsi;
 	}
 	
-	public void setDaftarObat(List<ObatModel> daftarObat) {
-		this.daftarObat = daftarObat;
+	public void setObat(ObatModel obat) {
+		this.obat = obat;
 	}
 
-	public List<ObatModel> getDaftarObat() {
-		return daftarObat;
+	public ObatModel getObat() {
+		return obat;
 	}
 }

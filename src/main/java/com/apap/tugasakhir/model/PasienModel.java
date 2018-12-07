@@ -1,7 +1,8 @@
 package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.sql.Date;
+
 
 public class PasienModel implements Serializable {	
 
@@ -23,26 +24,40 @@ public class PasienModel implements Serializable {
 		this.nama = nama;
 	}
 
-	public HashMap<String, Integer> getStatusPasien() {
+	
+
+	public StatusPasienModel getStatusPasien() {
 		return statusPasien;
 	}
 
-	public void setStatusPasien(Integer id) {
-		this.statusPasien.put("id", id);
+	public void setStatusPasien(StatusPasienModel statusPasien) {
+		this.statusPasien = statusPasien;
 	}
 
-	public HashMap<String, Integer> getPoliRujukan() {
+	public PoliRujukanModel getPoliRujukan() {
 		return poliRujukan;
 	}
 
-	public void setPoliRujukan(Integer id) {
-		this.poliRujukan.put("id", id);
+	public void setPoliRujukan(PoliRujukanModel poliRujukan) {
+		this.poliRujukan = poliRujukan;
 	}
+
+
 
 	private String nama;
 	
-	private HashMap<String,Integer> statusPasien;
+	private StatusPasienModel statusPasien;
 	
-	private HashMap<String,Integer> poliRujukan;
+	private PoliRujukanModel poliRujukan;
+	
+	private Date tanggalRujukan;
+
+	public Date getTanggalRujukan() {
+		return tanggalRujukan;
+	}
+
+	public void setTanggalRujukan(Date tanggalRujukan) {
+		this.tanggalRujukan = tanggalRujukan;
+	}
 
 }
