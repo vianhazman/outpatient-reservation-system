@@ -3,6 +3,7 @@ package com.apap.tugasakhir.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -65,20 +66,22 @@ public class JadwalPoliModel implements Serializable {
 		return tanggal;
 	}
 	
-	public Time getJamMulai() {
-		return jamMulai;
+	public String getJamMulai() {		
+		return jamMulai.toString().substring(0, 5);
 	}
 
-	public void setJamMulai(Time jamMulai) {
-		this.jamMulai = jamMulai;
+	public void setJamMulai(String jamMulai) {
+		jamMulai = jamMulai+":00";
+		this.jamMulai =Time.valueOf(jamMulai);
 	}
 
-	public Time getJamSelesai() {
-		return jamSelesai;
+	public String getJamSelesai() {
+		return jamSelesai.toString().substring(0, 5);
 	}
 
-	public void setJamSelesai(Time jamSelesai) {
-		this.jamSelesai = jamSelesai;
+	public void setJamSelesai(String jamSelesai) {
+		jamSelesai = jamSelesai+":00";
+		this.jamSelesai = Time.valueOf(jamSelesai);
 	}
 	
 	public void setDokter(long id) {
