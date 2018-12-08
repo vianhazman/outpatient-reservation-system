@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.model.DokterModel;
@@ -54,17 +55,16 @@ public class webService {
 		}
 		
 		public String updatePasien(PasienModel pasien) {
-			String path = Setting.siAppointment+"/updatePasien/";
+			String path = Setting.siAppointment+"updatePasien/";
 			String str = restTemplate.postForEntity(path, pasien, String.class).getBody();
 			return str;
 		}
-		
+
 		//post to si laboratorium 
 		public String postLaboratoriumRequest(PostLaboratoriumWrapper req) {
 			String path ="/";
 			String str = restTemplate.postForEntity(path, req, String.class).getBody();
 			return str;
-
 		}
 		
 		//get pasien rawat jalan
