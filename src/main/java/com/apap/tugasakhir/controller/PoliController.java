@@ -1,16 +1,21 @@
 package com.apap.tugasakhir.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.apap.tugasakhir.model.DokterModel;
 import com.apap.tugasakhir.model.JadwalPoliModel;
@@ -32,15 +37,17 @@ public class PoliController {
 	private JadwalService jadwalService;
 
 	@RequestMapping(value = "/rawat-jalan/poli/jadwal", method = RequestMethod.GET)
-	private String viewJadwal(Model model) {
+	private String viewJadwal(Model model, Authentication authentication) {
 		List<JadwalPoliModel> listJadwal = jadwalService.findAll();
 		String[] days;
 		days = new String[] { "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
 		List<DokterModel> listDokter = web.getAllDokter();
+		String role = authentication.getAuthorities().toString();
 
 		model.addAttribute("listJadwal", listJadwal);
 		model.addAttribute("days", days);
 		model.addAttribute("listDokter", listDokter);
+		model.addAttribute("role", role);
 		return "view-jadwal";
 	}
 

@@ -2,9 +2,12 @@ package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class StatusPasienModel implements Serializable {
 
 	private long id;
+	@JsonIgnore
     private String jenis;
 	public long getId() {
 		return id;

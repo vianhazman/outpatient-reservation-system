@@ -51,6 +51,7 @@ public class PasienModel implements Serializable {
 	private PoliRujukanModel poliRujukan;
 	
 	private Date tanggalRujukan;
+	
 
 	public Date getTanggalRujukan() {
 		return tanggalRujukan;

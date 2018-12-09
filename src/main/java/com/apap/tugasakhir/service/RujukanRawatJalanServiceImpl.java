@@ -1,5 +1,6 @@
 package com.apap.tugasakhir.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -32,4 +33,24 @@ public class RujukanRawatJalanServiceImpl implements RujukanRawatJalanService{
 		return rujukanDb.findByidPasien(id);
 	}
 	
+	@Override
+	public List<RujukanRawatJalanModel> getAllRujukan() {
+		return rujukanDb.findAll();
+	}
+	
+	@Override
+	public RujukanRawatJalanModel getRujukanByIdPasien(long idPasien) {
+		// TODO Auto-generated method stub
+		return rujukanDb.findByIdPasien(idPasien);
+	}
+	
+	@Override
+	public RujukanRawatJalanModel getRujukanByIdPasienAndTanggalRujukan(long idPasien, Date tanggalRujuk) {
+		return rujukanDb.findByidPasienAndTanggalRujuk(idPasien, tanggalRujuk);
+	}
+	
+	@Override
+	public RujukanRawatJalanModel saveRujukan(RujukanRawatJalanModel rujukan) {
+		return rujukanDb.save(rujukan);
+	}
 }
