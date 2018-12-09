@@ -29,4 +29,10 @@ public class PenangananServiceImpl implements PenangananService{
 		return result;
 	}
 
+	@Override
+	public void addPenanganan(PenangananModel penanganan) {
+		// TODO Auto-generated method stub
+		penangananDb.save(penanganan);
+	}
+
 }

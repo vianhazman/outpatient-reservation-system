@@ -1,8 +1,9 @@
 package com.apap.tugasakhir.controller;
 
-import com.apap.tugasakhir.model.ObatModel;
-import com.apap.tugasakhir.rest.ObatDetail;
+import com.apap.tugasakhir.model.ObatModel;import com.apap.tugasakhir.model.PenangananModel;
+import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.rest.Setting;
+import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.ObatService;
 
 import java.sql.Date;
@@ -26,36 +27,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @RestController
- * @RequestMapping("/rawat-jalan/obat")
- *
- */
+@Controller
 public class ObatController {
-	/**
+	@Autowired
+	webService web;
+	
 	@Autowired
 	private ObatService obatService;
 	
-	@Autowired
-	RestTemplate restTemplate;
-	
-	@Bean
-	public RestTemplate rest() {
-		return new RestTemplate();
+	@RequestMapping(value = "/rawat-jalan/obat/tambah", method = RequestMethod.POST)
+	public String tambahObat(Model model, @ModelAttribute ObatModel obat) {
+		ObatModel obatFarmasi = web.getObat();
+		obatService.addObat(obat);
+		return "";
 	}
-	
-	@GetMapping(value="/terima") 
-	public String getObat(@PathVariable("id") Long id) throws Exception {
-		String path = Setting.obatUrl;
-		return restTemplate.getForEntity(path, String.class).getBody();
-	}
-	
-	@GetMapping(value="/terima")
-	public ObatDetail tambahObat(@PathVariable("id") String id) throws Exception {
-		String path = Setting.obatUrl;
-		ObatModel obat = obatService.getObat();
-		ObatDetail detail = restTemplate.postForObject(path, obat, ObatDetail.class);
-		return detail;
-	}
-	 */
 }
