@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Daftar Poli</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" align="center">
+                    Lihat Semua Poli
+                </div>
+                <div class="card-body">
+                    <table id="listPoli" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Deskripsi</th>
+                            <th>Hari</th>
+                            <th>Update</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="poli : ${listPoli}">
+                            <tr>
+                                <td th:text="${poli.nama}"></td>
+                                <td th:text="${poli.deskripsi}"></td>
+                                <td>
+                                <ul th:each="hari : ${poli.daftarHariPoli}">
+                                <li th:text="${hari.hari}"></li>
+                                </ul>
+                                </td>
+                                <td> <div class="btn-toolbar">
+							  		<div class="btn-group mr-2" role="group" aria-label="First group">
+								    	<form th:action="@{/rawat-jalan/poli/ubah}" method="GET">
+											<button type="submit" class="btn btn-primary" th:value="${poli.id}" name="id">Ubah</button>
+										</form>
+							  		</div>
+							  	</div></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+</body>
+</html>
