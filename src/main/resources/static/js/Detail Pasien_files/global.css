@@ -19,9 +19,7 @@ body {
   background: white;
   color: black;
 }
-#cariPasien {
-  padding: 0% 3% 0% 3%;
-}
+
 #dashboard {
   color: #2f0743;
   text-align: center;
@@ -83,7 +81,8 @@ body {
   z-index: 99;
   /*position the autocomplete items to be the same width as the container:*/
   top: 100%;
-  margin: 0% 3% 0% 3%;
+  left: 0;
+  right: 0;
 }
 
 .autocomplete-items div {

@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.apap.tugasakhir.model.PasienModel;
 
-@RestController
+@Controller
 @RequestMapping("/rawat-jalan")
 public class PenangananController {
 	@Autowired
@@ -50,9 +50,9 @@ public class PenangananController {
 	@Autowired
 	private RujukanRawatJalanService rujukanService;
 	
-	@RequestMapping(value = "/rawat-jalan/pasien/penanganan", method = RequestMethod.GET)
-	public String lihatPenanganan(Model model, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
-		
+	@RequestMapping(value = "/pasien/penanganan/", method = RequestMethod.GET)
+	public String lihatPenanganan(Model model, @RequestParam Long idPasienRawatJalan) {
+		System.out.println("test!");
 		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
 		
 		
@@ -68,7 +68,7 @@ public class PenangananController {
 		return "lihat-penanganan";
 	}
 	
-	@RequestMapping(value = "/rawat-jalan/pasien/penanganan/tambah", method = RequestMethod.POST)
+	@RequestMapping(value = "/pasien/penanganan/tambah", method = RequestMethod.POST)
 	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
 		
 		if(jenisPenanganan.equals("obat")) {
