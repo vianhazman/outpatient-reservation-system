@@ -1,7 +1,6 @@
 package com.apap.tugasakhir.controller;
 
-import com.apap.tugasakhir.model.ObatModel;
-import com.apap.tugasakhir.model.PenangananModel;
+import com.apap.tugasakhir.model.ObatModel;import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.rest.webService;

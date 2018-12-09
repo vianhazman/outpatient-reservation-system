@@ -54,6 +54,12 @@ public class webService {
 			return returnList;
 		}
 		
+		public PasienModel getPasien(long id) {
+			String path = Setting.getPasien+id;
+			PasienModel pasien = restTemplate.getForEntity(path, PasienModel.class).getBody();
+			return pasien;
+		}
+		
 		public String updatePasien(PasienModel pasien) {
 			String path = Setting.siAppointment+"/updatePasien/";
 			String str = restTemplate.postForEntity(path, pasien, String.class).getBody();
