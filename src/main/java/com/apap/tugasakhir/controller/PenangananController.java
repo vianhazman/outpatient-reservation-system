@@ -53,13 +53,8 @@ public class PenangananController {
 	@RequestMapping(value = "/rawat-jalan/pasien/penanganan", method = RequestMethod.GET)
 	public String lihatPenanganan(Model model, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
 		
-		List<PasienModel> daftarPasien = web.getAllPasienRawatJalan();
-		PasienModel pasienRawatJalan = daftarPasien.get(0);
-		for(PasienModel pasien: daftarPasien) {
-			if(pasien.getId() == idPasienRawatJalan) {
-				pasienRawatJalan = pasien;
-			}
-		}
+		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
+		
 		
 		List<PenangananModel> daftarPenanganan = penangananService.getAllPenanganan(idPasienRawatJalan);
 		
