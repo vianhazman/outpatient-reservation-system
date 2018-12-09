@@ -11,5 +11,6 @@ import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 @Repository
 public interface RujukanRawatJalanDb extends JpaRepository<RujukanRawatJalanModel, Long> {
 	RujukanRawatJalanModel findByidPasienAndTanggalRujuk(long idPasien, Date tanggalRujuk);
+	RujukanRawatJalanModel findByidPasien(long idPasien);
 	RujukanRawatJalanModel findByTanggalRujuk(Date tanggalRujuk);
 }

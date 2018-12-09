@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.model.DokterModel;
+import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.wrapper.GetDokterWrapper;
-import com.apap.tugasakhir.wrapper.GetPasienWrapper;
+import com.apap.tugasakhir.wrapper.GetPasienWrapper; 
 import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
 @Service
@@ -73,4 +74,11 @@ public class webService {
 			List<PasienModel> returnList = restTemplate.getForEntity(path, GetPasienWrapper.class).getBody().getResult();
 			return returnList;
 		}
+		
+		public ObatModel getObat() {
+			String path = Setting.getObat;
+			ObatModel obat = restTemplate.getForEntity(path, ObatModel.class).getBody();
+			return obat;
+		}
+		
 }
