@@ -16,8 +16,7 @@
 *.iml
 *.ipr
 
-application.properties
-
+/src/main/resources/application.properties
 ### NetBeans ###
 /nbproject/private/
 /build/
@@ -26,3 +25,5 @@ application.properties
 /nbdist/
 /.nb-gradle/
 .DS_Store
+
+application.properties
