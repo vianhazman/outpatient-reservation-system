@@ -1,5 +1,6 @@
 package com.apap.tugasakhir.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -40,6 +41,11 @@ public class JadwalServiceImpl implements JadwalService {
 	public void add(JadwalPoliModel jadwal) {
 		jadwalDb.save(jadwal);
 		
+	}
+	
+	@Override
+	public JadwalPoliModel getByTanggalAndDokter(Date tanggal, long dokter) {
+		return jadwalDb.findByTanggalAndDokter(tanggal, dokter);
 	}
 
 }
