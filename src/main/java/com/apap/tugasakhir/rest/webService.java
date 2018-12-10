@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.model.DokterModel;
 import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.wrapper.GetDokterWrapper;
-import com.apap.tugasakhir.wrapper.GetPasienWrapper; 
+import com.apap.tugasakhir.wrapper.GetPasienIdWrapper;
+import com.apap.tugasakhir.wrapper.GetPasienWrapper;
 import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
 @Service
@@ -57,8 +57,8 @@ public class webService {
 		
 		public PasienModel getPasien(long id) {
 			String path = Setting.getPasien+id;
-			PasienModel pasien = restTemplate.getForEntity(path, PasienModel.class).getBody();
-			return pasien;
+			GetPasienIdWrapper pasien = restTemplate.getForEntity(path, GetPasienIdWrapper.class).getBody();
+			return pasien.getResult();
 		}
 		
 		public String updatePasien(PasienModel pasien) {
