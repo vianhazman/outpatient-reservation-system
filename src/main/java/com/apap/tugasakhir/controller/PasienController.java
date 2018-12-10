@@ -51,7 +51,7 @@ public class PasienController {
 				newRujukan.setNama(pasien.getNama());
 				long selisih = Integer.MAX_VALUE;
 				JadwalPoliModel poli = new JadwalPoliModel();
-				for (JadwalPoliModel jadwal:polidb.findById(pasien.getPoliRujukan().getId()).get().getDaftarJadwalPoli()) {
+				for (JadwalPoliModel jadwal:polidb.findById(pasien.getPoliRujukan().getId()).getDaftarJadwalPoli()) {
 					long sub = jadwal.getTanggal().getTime() - pasien.getTanggalRujukan().getTime();
 					if (sub < selisih) {
 						selisih = sub;
