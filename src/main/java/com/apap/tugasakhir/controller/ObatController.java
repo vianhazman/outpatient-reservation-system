@@ -35,23 +35,21 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/rawat-jalan")
 public class ObatController {
+	
 	@Autowired
 	webService web;
 	
 	@Autowired
 	private ObatService obatService;
 	
-	@PostMapping(value = "/obat/tambah/{obatId}")
-    public BaseResponse<ObatModel> addObat(@PathVariable(name="obatId", required = true) long obat_id, 
-    		@RequestBody @Valid ObatModel obat, BindingResult bindingResult) {
+	@PostMapping(value = "/obat/tambah")
+    public BaseResponse<ObatModel> addObat(@RequestBody @Valid ObatModel obat, BindingResult bindingResult) {
 		BaseResponse<ObatModel> response = new BaseResponse<ObatModel>();
-		if (bindingResult.hasErrors() || obat_id < 1) {
+		if (bindingResult.hasErrors()) {
             response.setStatus(500);
             response.setMessage("error data");
         } else {
-        	
         	obatService.addObat(obat);
-        	//obat.setFlagGroup(obatId);
             response.setStatus(200);
             response.setMessage("success");
             response.setResult(obat);
