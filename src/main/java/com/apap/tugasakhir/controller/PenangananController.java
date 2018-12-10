@@ -1,5 +1,10 @@
 package com.apap.tugasakhir.controller;
 
+
+import com.apap.tugasakhir.model.PenangananModel;
+import com.apap.tugasakhir.service.PenangananService;
+
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +42,7 @@ public class PenangananController {
 	
 
 	@RequestMapping(value = "/pasien/penanganan", method = RequestMethod.GET)
-	public String lihatPenanganan(Model model, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
+	public String lihatPenanganan(Model model, @RequestParam Long idPasienRawatJalan) {
 		
 		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
 		List<PenangananModel> daftarPenangananPasien = penangananService.getAllPenanganan(idPasienRawatJalan);
@@ -51,6 +56,7 @@ public class PenangananController {
 		return "lihat-penanganan";
 	}
 	
+
 	@RequestMapping(value = "/pasien/penanganan/tambah", method = RequestMethod.POST)
 	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan, @RequestParam("obat_id") Long idObat, @RequestParam("id_lab") int idLab) {
 
