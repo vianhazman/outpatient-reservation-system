@@ -23,10 +23,6 @@ public class PageController {
 		return "login";
 	}
 	
-	@RequestMapping("/rawat-jalan/poli/tambah")
-	public String addPoli () {
-		return "add-poli";
-	}
 	@RequestMapping("/")
 	public ModelAndView redirect(HttpServletRequest request) {
 		if (request.isUserInRole("ROLE_ADMIN")) {
