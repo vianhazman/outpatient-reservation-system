@@ -1,7 +1,9 @@
 package com.apap.tugasakhir.controller;
 
-import com.apap.tugasakhir.model.ObatModel;import com.apap.tugasakhir.model.PenangananModel;
+import com.apap.tugasakhir.model.ObatModel;
+import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
+import com.apap.tugasakhir.rest.BaseResponse;
 import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.ObatService;
@@ -40,17 +42,19 @@ public class ObatController {
 	private ObatService obatService;
 	
 	@PostMapping(value = "/obat/tambah/{obatId}")
-    public ObatModel addObat(@PathVariable(name="obatId", required = true) long obat_id, @RequestBody @Valid ObatModel obat, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-            //response.setStatus(500);
-            //response.setMessage("error data");
+    public BaseResponse<ObatModel> addObat(@PathVariable(name="obatId", required = true) long obat_id,
+    		@RequestBody @Valid ObatModel obat, BindingResult bindingResult) {
+		BaseResponse<ObatModel> response = new BaseResponse<ObatModel>();
+		if (bindingResult.hasErrors() || obat_id < 1) {
+            response.setStatus(500);
+            response.setMessage("error data");
         } else {
         	
         	obatService.addObat(obat);
-            //labResult.setFlagGroup(obatId);
-            //response.setStatus(200);
-            //response.setMessage("success");
-            //response.setResult(labResult);
+        	//obat.setFlagGroup(obatId);
+            response.setStatus(200);
+            response.setMessage("success");
+            response.setResult(obat);
         }
         return null;
     }
