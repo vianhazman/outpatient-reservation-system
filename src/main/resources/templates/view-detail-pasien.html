@@ -17,7 +17,7 @@
 		<div id="dashboard" class="shadow p-3 mb-5 bg-white rounded-10">
 		<h2 th:text="${rujukan.nama}"></h2>
 			<p th:text="'Pasien Rawat Jalan'"></p>
-			
+			<a class="nav-link" th:href="@{'/rawat-jalan/pasien/penanganan?idPasienRawatJalan='}+${rujukan.idPasien}">Lihat/Ubah/Tambah Penanganan</a>
 			<div id="content">
 					<div class="row">
 			<div class="col-6">
