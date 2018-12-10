@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+<title>Update Jadwal</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+	<br>
+	<table align="center" cellpadding="10">
+		<tr>
+			<td>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h1>
+										<center>Ubah Poli
+									</h1>
+								</div>
+								<form th:action="@{/rawat-jalan/poli/ubah}" th:object="${poli}" method="POST">
+								<input type="hidden" name="id" th:value="${poli.id}" />
+									<table width=500 cellpadding="10" style="margin-left: 30px;">
+										<br>
+										<tr>
+											<td>Nama Poli:</td>
+											<td><input required type="text" name="nama" class="form-control" id="nama" th:value="${poli.nama}" /></td>
+										</tr>
+										<tr>
+											<td>Deskripsi</td>
+											<td><input required type="text" name="deskripsi" class="form-control" th:value="${poli.deskripsi}" /></td>
+										</tr>
+									</table>
+									<br>
+									<center>
+										<button type="submit" class="btn btn-sm btn-success">Simpan</button>
+										<br> <br>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+

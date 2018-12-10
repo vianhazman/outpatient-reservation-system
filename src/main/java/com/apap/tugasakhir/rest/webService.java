@@ -12,6 +12,7 @@ import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.wrapper.GetDokterWrapper;
+import com.apap.tugasakhir.wrapper.GetPasienIdWrapper;
 import com.apap.tugasakhir.wrapper.GetPasienWrapper;
 import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
@@ -57,8 +58,8 @@ public class webService {
 		
 		public PasienModel getPasien(long id) {
 			String path = Setting.getPasien+id;
-			PasienModel pasien = restTemplate.getForEntity(path, PasienModel.class).getBody();
-			return pasien;
+			GetPasienIdWrapper pasien = restTemplate.getForEntity(path, GetPasienIdWrapper.class).getBody();
+			return pasien.getResult();
 		}
 		
 		public String updatePasien(PasienModel pasien) {

@@ -1,10 +1,14 @@
 package com.apap.tugasakhir.repository;
 
-import com.apap.tugasakhir.model.JadwalPoliModel;
+import java.sql.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface JadwalPoliDB extends JpaRepository<JadwalPoliModel, Long>{
+import com.apap.tugasakhir.model.JadwalPoliModel;
 
+@Repository
+public interface JadwalPoliDb extends JpaRepository<JadwalPoliModel, Long> {
+	JadwalPoliModel findByTanggalAndDokter(Date tanggal, long dokter);
+	JadwalPoliModel findById(long id);
 }
+

@@ -16,7 +16,7 @@
 			
 			<br>
 			<div class="row">
-				<div class="col-4 offset-8">
+				<div class="col-4">
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#penangananObat">Tambah Penanganan</button>
 				</div>
 				
@@ -35,12 +35,12 @@
 						    <label for="input_obat">Jenis Penanganan</label>
 						    <select name="jenis_penanganan" class="form-control" id="input_obat" required>
 						      <option value="obat">Obat</option>
-						      <option value="lab">Lab</option>
+						      <option value="lab">Pemeriksaan Lab</option>
 						    </select>
 						  </div>
 						  <div class="form-group">
 						    <label for="input_id">ID Pasien</label>
-						    <input type="text" name="id_pasien_rawat_jalan" class="form-control" id="input_id" value="{idPasien}" readonly>
+						    <input type="text" name="id_pasien_rawat_jalan" class="form-control" id="input_id" th:value="${pasien.id}" readonly>
 						  </div>
 						  <div class="form-group">
 						    <label for="input_waktu">Waktu</label>
@@ -48,15 +48,13 @@
 						  </div>
 						  <div class="form-group">
 						    <label for="input_obat">Obat</label>
-						    <select name="id_obat" class="form-control" id="input_obat" required>
-						      <option value="">Pilih Obat</option>
-						      <option th:each="obat : ${daftarObat}" th:text="${obat.nama}" th:value="${obat}"></option>
+						    <select name="id_obat" class="form-control" id="input_obat">
+						      <option th:each="obat : ${daftarObat}" th:text="${obat.nama}" th:value="${obat.id}"></option>
 						    </select>
 						  </div>
 						  <div class="form-group">
 						    <label for="input_lab">Lab</label>
-						    <select name="id_lab" class="form-control" id="input_obat" required>
-						      <option value="">Pilih Lab</option>
+						    <select name="id_lab" class="form-control" id="input_obat">
 						      <option value="lab_umum">lab_umum</option>
 						      <option value="lab_khusus">lab_khusus</option>
 						    </select>
