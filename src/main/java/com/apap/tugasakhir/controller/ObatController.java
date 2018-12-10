@@ -35,6 +35,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/rawat-jalan")
 public class ObatController {
+	
 	@Autowired
 	webService web;
 	
