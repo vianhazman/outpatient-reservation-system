@@ -38,4 +38,10 @@ public class ObatServiceImpl implements ObatService{
 		obatDb.save(obat);
 	}
 
+	@Override
+	public ObatModel getObatById(long id) {
+		// TODO Auto-generated method stub
+		return obatDb.findById(id).get();
+	}
+
 }

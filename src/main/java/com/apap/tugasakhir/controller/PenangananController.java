@@ -18,6 +18,7 @@ import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.ObatService;
 import com.apap.tugasakhir.service.PenangananService;
 import com.apap.tugasakhir.service.RujukanRawatJalanService;
+import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
 @Controller
 @RequestMapping("/rawat-jalan")
@@ -42,7 +43,6 @@ public class PenangananController {
 		
 		List<ObatModel> daftarObatAvailable = obatService.getAllObatAvailable();
 		
-		model.addAttribute("idPasien", idPasienRawatJalan);
 		model.addAttribute("pasien", pasienRawatJalan);
 		model.addAttribute("daftarPenanganan", daftarPenangananPasien);
 		model.addAttribute("daftarObat", daftarObatAvailable);
@@ -50,18 +50,36 @@ public class PenangananController {
 		return "lihat-penanganan";
 	}
 	
-	@RequestMapping(value = "/rawat-jalan/pasien/penanganan/tambah", method = RequestMethod.POST)
-	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
+	@RequestMapping(value = "/pasien/penanganan/tambah", method = RequestMethod.POST)
+	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan, @RequestParam("obat_id") Long idObat) {
 		
 		if(jenisPenanganan.equals("obat")) {
+			System.out.println(penanganan);
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
+			ObatModel obat = obatService.getObatById(idObat);
 			penanganan.setRujukanRawatJalan(rujukan);
+			penanganan.setObat(obat);
 			penangananService.addPenanganan(penanganan);
 		} else if(jenisPenanganan.equals("lab")) {
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
 			penanganan.setRujukanRawatJalan(rujukan);
+			ObatModel obat = null;
+			penanganan.setObat(obat);
+			PostLaboratoriumWrapper req = new PostLaboratoriumWrapper();
+			req.setTanggal_pengajuan(penanganan.getWaktu());
+			req.setPasien(penanganan.getIdPasienRawatJalan());
+			String str = web.postLaboratoriumRequest(req);
 			penangananService.addPenanganan(penanganan);
 		}
+		
+		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
+		List<PenangananModel> daftarPenangananPasien = penangananService.getAllPenanganan(idPasienRawatJalan);
+		
+		List<ObatModel> daftarObatAvailable = obatService.getAllObatAvailable();
+		
+		model.addAttribute("pasien", pasienRawatJalan);
+		model.addAttribute("daftarPenanganan", daftarPenangananPasien);
+		model.addAttribute("daftarObat", daftarObatAvailable);
 		
 		return "lihat-penanganan";
 	}
