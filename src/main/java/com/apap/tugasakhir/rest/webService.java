@@ -89,4 +89,18 @@ public class webService {
 			List<PasienModel> returnList = restTemplate.getForEntity(path, GetPasienWrapper.class).getBody().getResult();
 			return returnList;
 		}
+
+		public ObatModel getObat() {
+			String path = Setting.getObat;
+			ObatModel obat = restTemplate.getForEntity(path, ObatModel.class).getBody();
+			return obat;
+		}
+		
+		//get pasien rawat jalan si igd
+		public List<PasienModel> getPasienRawatJalanFromIgd() {
+			String path = Setting.igdUrl;
+			List<PasienModel> returnList = restTemplate.getForEntity(path, GetPasienWrapper.class).getBody().getResult();
+			return returnList;
+		}
+
 }
