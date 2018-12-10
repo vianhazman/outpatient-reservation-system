@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -16,19 +18,31 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private SimpleAuthenticationSuccessHandler successHandler;
-	
+	@Bean
+	public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+	    StrictHttpFirewall firewall = new StrictHttpFirewall();
+	    firewall.setAllowUrlEncodedSlash(true);
+	    firewall.setAllowSemicolon(true);
+	    return firewall;
+	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http
+		.csrf().ignoringAntMatchers("/rawat-jalan/obat/tambah").and()
 			.authorizeRequests()
 			.antMatchers("/css/**").permitAll()
 			.antMatchers("/js/**").permitAll()
 			.antMatchers("/user/**").permitAll()
+			.antMatchers("/rawat-jalan/obat/tambah").permitAll()
 			.antMatchers("/rawat-jalan/poli/jadwal/dokter-available").permitAll()
 			.antMatchers("/rawat-jalan/pasien/**").permitAll()
 			.antMatchers("/rawat-jalan/pasien/penanganan").permitAll()
 			.antMatchers("/staff/**").hasAnyAuthority("ROLE_STAFF")
 			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/rawat-jalan/poli/jadwal").permitAll()
+			.antMatchers("/rawat-jalan/poli/jadwal/**").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/rawat-jalan/poli").permitAll()
+			.antMatchers("/rawat-jalan/poli/**").hasAnyAuthority("ROLE_ADMIN")
 			.antMatchers("/rawat-jalan/poli/jadwal").permitAll()
 			.antMatchers("/rawat-jalan/poli/jadwal/**").hasAnyAuthority("ROLE_ADMIN")
 			.anyRequest().authenticated()

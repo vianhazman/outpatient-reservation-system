@@ -35,9 +35,12 @@
 						<th th:text="${rujukan.nama}"></th>
 						<th th:text="${rujukan.idPasien}"></th>
 						<th th:text="${rujukan.tanggalRujuk}"></th>
-						<th th:text="${statusPasien[rujukan.status 	- 1]}"></th>
+						<th th:text="${statusPasien[rujukan.status]}"></th>
 						<th>
-							<button th:onclick="'changeStatus('+${rujukan.id}+')'"> Ubah Status </button>
+						<div th:if="${statusPasien[rujukan.status]!='Selesai'}">
+													<a th:href="@{'/rawat-jalan/pasien/ubah?idPasien=' + ${rujukan.idPasien}+'&idRujukan=' + ${rujukan.id}}">Ubah Status</a>
+													
+						</div>
 						</th>
 					</tr>
 				</tbody>

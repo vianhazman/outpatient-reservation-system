@@ -13,55 +13,51 @@
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<div class="container" style="margin-top: 30px">
-		<center>
-			<h2>Daftar Pasien Rawat Jalan</h2>
-		</center>
-		<div class="row">
-			<div class="col-3">
-				ID Pasien
+	<div class="container" style="margin-top: 10%;">
+		<div id="dashboard" class="shadow p-3 mb-5 bg-white rounded-10">
+		<h2 th:text="${rujukan.nama}"></h2>
+			<p th:text="'Pasien Rawat Jalan'"></p>
+			<a class="nav-link" th:href="@{'/rawat-jalan/pasien/penanganan?idPasienRawatJalan='}+${rujukan.idPasien}">Lihat/Ubah/Tambah Penanganan</a>
+			<div id="content">
+					<div class="row">
+			<div class="col-6">
+				ID Pasien:
 			</div>
 			<div class="col-6" th:text="${rujukan.idPasien}">
 				
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-3">
-				Nama Pasien
-			</div>
-			<div class="col-6" th:text="${rujukan.nama}">
-				
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-3">
-				Poli
+			<div class="col-6">
+				Poli:
 			</div>
 			<div class="col-6" th:text="${rujukan.jadwalPoli.poli.nama}">
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-3">
-				Jadwal
+			<div class="col-6">
+				Jadwal:
 			</div>
-			<div class="col-6" th:text="${rujukan.jadwalPoli.tanggal}">
+			<div class="col-6" th:text="${jadwalFix}">
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-3">
-				Tanggal Rujukan
+			<div class="col-6">
+				Tanggal Rujukan:
 			</div>
-			<div class="col-6" th:text="${rujukan.tanggalRujuk}">
+			<div class="col-6" th:text="${tanggalFix}">
 				
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-3">
-				Status
+			<div class="col-6">
+				Status:
 			</div>
-			<div class="col-6" th:text="${status[rujukan.status - 1]}">
+			<div class="col-6" th:text="${status[rujukan.status]}">
 			</div>
+		</div></div>
 		</div>
+			
 	</div>
 </body>
 </html>

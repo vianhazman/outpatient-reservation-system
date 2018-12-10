@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Access Forbidden</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="container-fluid">
+		<div class="jumbotron" style="margin-top: 1%;">
+			<div class="container">
+				<h1 class="display-5">Tidak dapat mengakses halaman!</h1>
+				<div>Maaf, anda tidak dapat mengakses halaman ini.</div>
+				<br>
+				<a th:href="@{/}">Kembali</a>
+			</div>
+		</div>
+		<div class="row"></div>
+	</div>
+</body>
+</html>

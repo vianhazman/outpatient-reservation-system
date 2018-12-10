@@ -20,6 +20,7 @@ public class ObatServiceImpl implements ObatService{
 	private ObatDB obatDb;
 	
 	@Override
+
 	public List<ObatModel> getAllObatAvailable() {
 		List<ObatModel> temp = obatDb.findAll();
 		List<ObatModel> result = obatDb.findAll();
@@ -34,8 +35,18 @@ public class ObatServiceImpl implements ObatService{
 
 	@Override
 	public void addObat(ObatModel obat) {
+		ObatModel obatLama = obatDb.findById(obat.getId()).get();
+		if(obatLama == null) {
+			obatDb.save(obat);
+		} else {
+			obatLama.setJumlah(obatLama.getJumlah() + obat.getJumlah());
+		}
+	}
+
+	@Override
+	public ObatModel getObatById(long id) {
 		// TODO Auto-generated method stub
-		obatDb.save(obat);
+		return obatDb.findById(id).get();
 	}
 
 }

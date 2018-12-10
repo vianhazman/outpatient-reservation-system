@@ -1,18 +1,24 @@
 package com.apap.tugasakhir.controller;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.apap.tugasakhir.model.JadwalPoliModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.PoliService;
 import com.apap.tugasakhir.service.RujukanRawatJalanService;
+import com.apap.tugasakhir.wrapper.GetJenisPemeriksaanWrapper;
+import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
 @Controller
 public class PasienController {
@@ -33,11 +39,10 @@ public class PasienController {
 		for (PasienModel pasien : draftPasien) {
 			if (rujukanService.getRujukanByIdPasienAndTanggalRujukan(pasien.getId(), pasien.getTanggalRujukan()) == null && pasien.getStatusPasien().getId() > 6) {
 				RujukanRawatJalanModel newRujukan = new RujukanRawatJalanModel();
-				System.out.println("ID: "+pasien.getStatusPasien().getId());
 				newRujukan.setStatus((int)pasien.getStatusPasien().getId()-(int)7);
-				System.out.println(newRujukan.getStatus()+pasien.getNama());
 				newRujukan.setPasien(pasien.getId());
 				newRujukan.setNama(pasien.getNama());
+				//newRujukan.getJadwalPoli().setPoli(pasien.getPoliRujukan());
 				long selisih = Integer.MAX_VALUE;
 				JadwalPoliModel poli = new JadwalPoliModel();
 				for (JadwalPoliModel jadwal : poliService.getPoliById(pasien.getPoliRujukan().getId()).getDaftarJadwalPoli()) {
@@ -69,7 +74,7 @@ public class PasienController {
 		List<PasienModel> draftPasien = web.getAllPasienRawatJalan();
 		  for (PasienModel pasien : draftPasien) {
 		   if (pasien.getId() == id) {
-			   pasien.getStatusPasien().setId(rujukan.getStatus()+6);
+			   pasien.getStatusPasien().setId(rujukan.getStatus()+7);
 			   System.out.println(web.updatePasien(pasien));
 			   break;
 		   }
@@ -78,11 +83,23 @@ public class PasienController {
 		model.addAttribute("listRujukan",rujukanService.listRujukan());
 		return "update-status-success";
 	}
+	@GetMapping(value="/tai")
+	private @ResponseBody PostLaboratoriumWrapper testget(){
+		PostLaboratoriumWrapper obj = new PostLaboratoriumWrapper();
+		obj.setIdPasien(2);
+		GetJenisPemeriksaanWrapper jenis = new GetJenisPemeriksaanWrapper();
+		jenis.setId(2);
+		obj.setJenisPemeriksaan(jenis);
+		obj.setTanggalPengajuan(null);
+		return obj;
+	}
 	
 	@RequestMapping(value = "/rawat-jalan/pasien/{idRujukan}", method=RequestMethod.GET)
 	private String detailPasienRawatJalan(@PathVariable (value="idRujukan") long id, Model model) {
 		String[]listStatus = new String[] {"Mendaftar di IGD","Berada di IGD", "Selesai di IGD","Mendaftar di Rawat Inap","Berada di Rawat Inap",
 				"Selesai di Rawat Inap","Mendaftar di Rawat Jalan","Berada di Rawat Jalan","Selesai di Rawat Jalan"};
+		model.addAttribute("jadwalFix",rujukanService.changeTanggal(rujukanService.getRujukanById(id).getJadwalPoli().getTanggal()));
+		model.addAttribute("tanggalFix",rujukanService.changeTanggal(rujukanService.getRujukanById(id).getTanggalRujuk()));
 		model.addAttribute("rujukan",rujukanService.getRujukanById(id));
 		model.addAttribute("status",listStatus);
 		System.out.println(rujukanService.getRujukanById(id));

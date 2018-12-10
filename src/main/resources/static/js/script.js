@@ -15,6 +15,7 @@ $(document).ready(function() {
         datasets: [
           {
             data: [data.total, data.inRawatJalan],
+
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -135,6 +136,7 @@ $(document).ready(function() {
   });
   $("#dashboard").show();
 });
+
 
 $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
   console.log(data[0]);

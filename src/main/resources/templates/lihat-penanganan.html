@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Lihat Riwayat Penanganan - SI Rawat Jalan</title>
-	
+		<title>Lihat Riwayat Penanganan - SI Rawat Jalan</title>	
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: css_datatable" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js_datatable" th:remove="tag"></object>
 	
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
 		<div class="container">
 			<br>
-			<h1 th:text="'Lihat Riwayat Penanganan ' + ${pasien.nama}"></h1>
-			
+			<h1 th:text="'Lihat Riwayat Penanganan ' + ${pasien.nama}"></h1>			
 			<br>
 			<div class="row">
-				<div class="col-4 offset-8">
+				<div class="col-4">
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#penangananObat">Tambah Penanganan</button>
 				</div>
 				
@@ -32,33 +32,33 @@
 				      <form th:action="@{/rawat-jalan/pasien/penanganan/tambah}" th:object="${penanganan}" method="POST">
 				      	<div class="modal-body">
 						  <div class="form-group">
-						    <label for="input_obat">Jenis Penanganan</label>
-						    <select name="jenis_penanganan" class="form-control" id="input_obat" required>
+						    <label for="input_jenis_penanganan">Jenis Penanganan</label>
+						    <select name="jenis_penanganan" class="form-control" id="input_jenis_penanganan" required>
 						      <option value="obat">Obat</option>
-						      <option value="lab">Lab</option>
+						      <option value="lab">Pemeriksaan Lab</option>
 						    </select>
 						  </div>
 						  <div class="form-group">
 						    <label for="input_id">ID Pasien</label>
-						    <input type="text" name="id_pasien_rawat_jalan" class="form-control" id="input_id" value="{idPasien}" readonly>
+						    <input type="text" name="id_pasien_rawat_jalan" class="form-control" id="input_id" th:value="${pasien.id}" readonly>
 						  </div>
 						  <div class="form-group">
 						    <label for="input_waktu">Waktu</label>
-						    <input type="time" name="waktu" class="form-control" id="input_waktu" required>
+						    <input type="date" name="waktu" class="form-control" id="input_waktu" required>
 						  </div>
-						  <div class="form-group">
+						  <div class="form-group" id="inputObat">
 						    <label for="input_obat">Obat</label>
-						    <select name="id_obat" class="form-control" id="input_obat" required>
-						      <option value="">Pilih Obat</option>
-						      <option th:each="obat : ${daftarObat}" th:text="${obat.nama}" th:value="${obat}"></option>
+						    <select name="obat_id" class="form-control" id="obat">
+						      <option th:each="obat : ${daftarObat}" th:text="${obat.nama}" th:value="${obat.id}"></option>
 						    </select>
 						  </div>
-						  <div class="form-group">
+						  <div class="form-group" id="inputLab">
 						    <label for="input_lab">Lab</label>
-						    <select name="id_lab" class="form-control" id="input_obat" required>
-						      <option value="">Pilih Lab</option>
-						      <option value="lab_umum">lab_umum</option>
-						      <option value="lab_khusus">lab_khusus</option>
+						    <select name="id_lab" class="form-control" id="lab">
+						      <option value="1">Darah</option>
+						      <option value="2">Urin</option>
+						      <option value="3">Mukus</option>
+						      <option value="4">Sample Kulit</option>
 						    </select>
 						  </div>
 						  <div class="form-group">
@@ -78,7 +78,7 @@
 			
 			<br>
 			<div class="row">
-				<table class="table table-hover">
+				<table id="datatable" class="table table-hover">
 					<thead class="thead-light">
 				    	<tr>
 				      		<th scope="col">ID Pasien Rawat Jalan</th>
@@ -91,16 +91,23 @@
 				  	</thead>
 				  	<tbody>
 				    	<tr th:each="penanganan : ${daftarPenanganan}">
-				      		<th th:text="${idPasien}" scope="row"></th>
+				      		<th th:text="${pasien.id}" scope="row"></th>
 				      		<td th:text="${pasien.nama}"></td>
 				      		<td th:text="${penanganan.rujukanRawatJalan.jadwalPoli.poli.nama}"></td>
 				      		<td th:text="${penanganan.waktu}"></td>
-				      		<td th:text="${penanganan.obat.nama}"></td>
-				      		<td th:text="${penanganan.deskripsi}"></td>
+				      		<div th:if="${penanganan.obat} != null">
+				      		<td th:text="'Obat '+${penanganan.obat.nama}"></td>
+				      		</div>
+				      		<div th:if="${penanganan.jenisPemeriksaan} != 0">
+				      		<td th:text="'Pemeriksaan Lab '+ ${arrLab[penanganan.jenisPemeriksaan]}"></td>
+				      		</div>
+				      		<td th:text="${penanganan.deskripsi}"> </td>
 				    	</tr>
 				  	</tbody>
 				</table>
 			</div>
 		</div>
 	</body>
+	<script th:src="@{/js/penanganan.js}" ></script>
+	
 </html>

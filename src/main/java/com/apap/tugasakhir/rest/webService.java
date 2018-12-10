@@ -5,13 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.model.DokterModel;
-import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.wrapper.GetDokterWrapper;
+import com.apap.tugasakhir.wrapper.GetJenisPemeriksaanWrapper;
+import com.apap.tugasakhir.wrapper.GetPasienIdWrapper;
 import com.apap.tugasakhir.wrapper.GetPasienWrapper;
 import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
@@ -55,10 +57,11 @@ public class webService {
 			return returnList;
 		}
 		
+
 		public PasienModel getPasien(long id) {
 			String path = Setting.getPasien+id;
-			PasienModel pasien = restTemplate.getForEntity(path, PasienModel.class).getBody();
-			return pasien;
+			GetPasienIdWrapper pasien = restTemplate.getForEntity(path, GetPasienIdWrapper.class).getBody();
+			return pasien.getResult();
 		}
 		
 		public String updatePasien(PasienModel pasien) {
@@ -71,10 +74,12 @@ public class webService {
 		public String postLaboratoriumRequest(PenangananModel req) {
 			PostLaboratoriumWrapper obj = new PostLaboratoriumWrapper();
 			obj.setIdPasien(req.getIdPasienRawatJalan());
-//			obj.setJenisPemeriksaan(req.getJenisPemeriksaan);
+			GetJenisPemeriksaanWrapper jenis = new GetJenisPemeriksaanWrapper();
+			jenis.setId(req.getJenisPemeriksaan());
+			obj.setJenisPemeriksaan(jenis);
 			obj.setTanggalPengajuan(req.getWaktu());
-			String path ="/";
-			String str = restTemplate.postForEntity(path, req, String.class).getBody();
+			String path =Setting.postLab;
+			String str = restTemplate.postForEntity(path,obj, String.class).getBody();
 			return str;
 		}
 		
@@ -84,11 +89,18 @@ public class webService {
 			List<PasienModel> returnList = restTemplate.getForEntity(path, GetPasienWrapper.class).getBody().getResult();
 			return returnList;
 		}
-		
+
 		public ObatModel getObat() {
 			String path = Setting.getObat;
 			ObatModel obat = restTemplate.getForEntity(path, ObatModel.class).getBody();
 			return obat;
 		}
 		
+		//get pasien rawat jalan si igd
+		public List<PasienModel> getPasienRawatJalanFromIgd() {
+			String path = Setting.igdUrl;
+			List<PasienModel> returnList = restTemplate.getForEntity(path, GetPasienWrapper.class).getBody().getResult();
+			return returnList;
+		}
+
 }

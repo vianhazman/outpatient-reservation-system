@@ -32,6 +32,7 @@ public class PenangananServiceImpl implements PenangananService{
 	@Override
 	public void addPenanganan(PenangananModel penanganan) {
 		// TODO Auto-generated method stub
+		System.out.println(penanganan.getRujukanRawatJalan().getId());
 		penangananDb.save(penanganan);
 	}
 
