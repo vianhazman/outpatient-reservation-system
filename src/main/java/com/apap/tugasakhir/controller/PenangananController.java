@@ -55,17 +55,20 @@ public class PenangananController {
 	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan, @RequestParam("obat_id") Long idObat) {
 
 		if(jenisPenanganan.equals("obat")) {
-			System.out.println(penanganan);
+			
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
 			ObatModel obat = obatService.getObatById(idObat);
+			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
 			penanganan.setRujukanRawatJalan(rujukan);
 			penanganan.setObat(obat);
+		
 			penangananService.addPenanganan(penanganan);
 		} else if(jenisPenanganan.equals("lab")) {
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
 			penanganan.setRujukanRawatJalan(rujukan);
-			ObatModel obat = null;
+			ObatModel obat = obatService.getObatById(idObat);
 			penanganan.setObat(obat);
+			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
 			String str = web.postLaboratoriumRequest(penanganan);
 			penangananService.addPenanganan(penanganan);
 		}

@@ -56,6 +56,6 @@ public class ObatController {
             response.setMessage("success");
             response.setResult(obat);
         }
-        return null;
+        return response;
     }
 }
