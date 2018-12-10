@@ -20,9 +20,5 @@ public class PageController {
 	public String login() {
 		return "login";
 	}
-	
-	@RequestMapping("/rawat-jalan/poli/tambah")
-	public String addPoli () {
-		return "add-poli";
-	}
+
 }
