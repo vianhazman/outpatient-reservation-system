@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $("#dashboard").show();
-$('body').addClass('large-background');
+$("body").addClass("large-background");
 });
 
 $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
