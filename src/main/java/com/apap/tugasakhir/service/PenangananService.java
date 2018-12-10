@@ -7,5 +7,6 @@ import com.apap.tugasakhir.model.PenangananModel;
 
 public interface PenangananService {
 	List<PenangananModel> getAllPenanganan(Long idPasienRawatJalan);
+
 	void addPenanganan(PenangananModel penanganan);
 }

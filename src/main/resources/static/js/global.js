@@ -1,3 +1,6 @@
+$(document).ready(function() {
+  $("#dashboard").show();
+});
 $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
   console.log(data[0]);
   var nama = [];
@@ -113,4 +116,8 @@ $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
     });
   }
   autocomplete(document.getElementById("myInput"), nama);
+});
+$(document).ready(function() {
+	
+    $('body').addClass('large-background');
 });
