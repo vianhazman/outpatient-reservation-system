@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import com.apap.tugasakhir.model.DokterModel;
 import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.model.PasienModel;
+import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.wrapper.GetDokterWrapper;
 import com.apap.tugasakhir.wrapper.GetPasienIdWrapper;
 import com.apap.tugasakhir.wrapper.GetPasienWrapper;
@@ -68,7 +69,11 @@ public class webService {
 		}
 
 		//post to si laboratorium 
-		public String postLaboratoriumRequest(PostLaboratoriumWrapper req) {
+		public String postLaboratoriumRequest(PenangananModel req) {
+			PostLaboratoriumWrapper obj = new PostLaboratoriumWrapper();
+			obj.setIdPasien(req.getIdPasienRawatJalan());
+//			obj.setJenisPemeriksaan(req.getJenisPemeriksaan);
+			obj.setTanggalPengajuan(req.getWaktu());
 			String path ="/";
 			String str = restTemplate.postForEntity(path, req, String.class).getBody();
 			return str;

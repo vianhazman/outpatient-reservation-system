@@ -83,4 +83,16 @@ public class ApiController {
 		return json;
 	}
 	
+	@GetMapping(value= "/poli/pasien/nama-pasien-rujukan")
+	public List<Map<String,String>> getNamaPasien() {
+		List<Map<String,String>> json = new ArrayList<Map<String,String>>();
+		for (RujukanRawatJalanModel obj : rujukan.getAllRujukan()) {
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("nama", obj.getNama());
+			map.put("id", obj.getId()+"");
+			json.add(map);
+		}
+		return json;
+	}
+	
 }

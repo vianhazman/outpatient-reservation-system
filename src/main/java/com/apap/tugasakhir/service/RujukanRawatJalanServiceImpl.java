@@ -27,6 +27,7 @@ public class RujukanRawatJalanServiceImpl implements RujukanRawatJalanService{
 	public RujukanRawatJalanModel getRujukanById(long id) {
 		return rujukanDb.getOne(id);
 	}
+
 	
 	@Override
 	public List<RujukanRawatJalanModel> getAllRujukan() {

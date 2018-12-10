@@ -34,6 +34,7 @@ public class PenangananController {
 	@Autowired
 	private RujukanRawatJalanService rujukanService;
 	
+
 	@RequestMapping(value = "/pasien/penanganan", method = RequestMethod.GET)
 	public String lihatPenanganan(Model model, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
 		
@@ -50,7 +51,7 @@ public class PenangananController {
 		return "lihat-penanganan";
 	}
 	
-	@RequestMapping(value = "/rawat-jalan/pasien/penanganan/tambah", method = RequestMethod.POST)
+	@RequestMapping(value = "/pasien/penanganan/tambah", method = RequestMethod.POST)
 	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
 		
 		if(jenisPenanganan.equals("obat")) {
