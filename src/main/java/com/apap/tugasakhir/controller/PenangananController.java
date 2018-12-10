@@ -55,14 +55,13 @@ public class PenangananController {
 		
 		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
 		
-		
-		List<PenangananModel> daftarPenanganan = penangananService.getAllPenanganan(idPasienRawatJalan);
+		List<PenangananModel> daftarPenangananPasien = penangananService.getAllPenanganan(idPasienRawatJalan);
 		
 		List<ObatModel> daftarObatAvailable = obatService.getAllObatAvailable();
 		
 		model.addAttribute("idPasien", idPasienRawatJalan);
 		model.addAttribute("pasien", pasienRawatJalan);
-		model.addAttribute("daftarPenanganan", daftarPenanganan);
+		model.addAttribute("daftarPenanganan", daftarPenangananPasien);
 		model.addAttribute("daftarObat", daftarObatAvailable);
 		
 		return "lihat-penanganan";

@@ -30,4 +30,9 @@ public class PageController {
 		}
 		return new ModelAndView("redirect:/staff");
 	}
+	
+	@RequestMapping("/rawat-jalan/poli/tambah")
+	public String addPoli () {
+		return "add-poli";
+	}
 }
