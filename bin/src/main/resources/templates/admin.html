@@ -6,17 +6,38 @@
 <object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
 <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<div class="container-fluid">
-		<div class="jumbotron" style="margin-top: 1%;">
-			<div class="container">
-				<h1 th:text=" 'Welcome, ' + ${#httpServletRequest.remoteUser} + ' !'"
+	<div class="heading">
+		<h1 th:text=" 'Welcome, ' + ${#httpServletRequest.remoteUser} + ' !'"
 					class="display-5"></h1>
 				<div>Sistem Informasi Rawat Jalan- Administrasi Poliklinik</div>
-			</div>
+	</div>
+		<div id="dashboard" class="shadow p-3 mb-5 bg-white rounded-10">
+		<div class="row">
+		<div class="col-md-4">
+		<p>Jumlah Pasien</p>
+		<img class="loader" id="totalPasienLoader" th:src="@{/images/spinner.svg}">
+		<canvas id="totalPasien"></canvas>
 		</div>
-		<div class="row"></div>
+		<div class="col-md-4">
+		<p>Kapasitas Poli</p>
+		<img class="loader" id="kapasitasPoliLoader" th:src="@{/images/spinner.svg}">
+		<canvas id="kapasitasPoli"></canvas>
+		</div>
+		<div class="col-md-4">
+		<p>Rujukan Berdasarkan Status</p>
+		<img class="loader" id="rujukanByStatusLoader" th:src="@{/images/spinner.svg}">
+		<canvas id="rujukanByStatus"></canvas>
+		</div>
+		</div>
+		
+		</div>
 	</div>
 </body>
+<script th:src="@{/js/Chart.js}"></script>
+<script th:src="@{/js/script.js}" >
+</script>
 </html>
