@@ -21,7 +21,10 @@ public class PenangananModel implements Serializable {
 	@Column(name = "id_pasien_rawat_jalan", nullable = false)
 	private int idPasienRawatJalan;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@Column(name = "jenis_pemeriksaan", nullable = true)
+	private int jenisPemeriksaan;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "rujukan_rawat_jalan_id", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
@@ -37,11 +40,19 @@ public class PenangananModel implements Serializable {
 	private Date waktu;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "obat_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "obat_id", referencedColumnName = "id", nullable = true)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private ObatModel obat;
 	
+	public int getJenisPemeriksaan() {
+		return jenisPemeriksaan;
+	}
+
+	public void setJenisPemeriksaan(int jenisPemeriksaan) {
+		this.jenisPemeriksaan = jenisPemeriksaan;
+	}
+
 	public void setId(long id) {
 		this.id = id;
 	}

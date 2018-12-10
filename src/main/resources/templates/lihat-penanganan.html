@@ -55,15 +55,12 @@
 						  <div class="form-group" >
 						    <label for="input_lab">Lab</label>
 						    <select name="id_lab" class="form-control" id="lab">
-						      <option value="lab_umum">Lab Umum</option>
-						      <option value="lab_khusus">Lab Khusus</option>
+						      <option value="1">Darah</option>
+						      <option value="2">Urin</option>
+						      <option value="3">Mukus</option>
+						      <option value="4">Sample Kulit</option>
 						    </select>
 						  </div>
-						  <script>
-							$("#input_jenis_penanganan").on("change", function() {
-    							$("#" + $(this).val()).show().siblings().hide();
-							})
-						  </script>
 						  <div class="form-group">
 						    <label for="input_deskripsi">Deskripsi</label>
 						    <textarea name="deskripsi" class="form-control" id="input_deskripsi" rows="3" required></textarea>

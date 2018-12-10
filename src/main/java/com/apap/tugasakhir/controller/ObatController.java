@@ -42,7 +42,7 @@ public class ObatController {
 	private ObatService obatService;
 	
 	@PostMapping(value = "/obat/tambah/{obatId}")
-    public BaseResponse<ObatModel> addObat(@PathVariable(name="obatId", required = true) long obat_id,
+    public BaseResponse<ObatModel> addObat(@PathVariable(name="obatId", required = true) long obat_id, 
     		@RequestBody @Valid ObatModel obat, BindingResult bindingResult) {
 		BaseResponse<ObatModel> response = new BaseResponse<ObatModel>();
 		if (bindingResult.hasErrors() || obat_id < 1) {

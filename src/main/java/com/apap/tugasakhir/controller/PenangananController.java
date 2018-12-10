@@ -52,24 +52,26 @@ public class PenangananController {
 	}
 	
 	@RequestMapping(value = "/pasien/penanganan/tambah", method = RequestMethod.POST)
-	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan, @RequestParam("obat_id") Long idObat) {
+	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan, @RequestParam("obat_id") Long idObat, @RequestParam("id_lab") int idLab) {
 
 		if(jenisPenanganan.equals("obat")) {
+			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
 			
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
-			ObatModel obat = obatService.getObatById(idObat);
-			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
 			penanganan.setRujukanRawatJalan(rujukan);
+			ObatModel obat = obatService.getObatById(idObat);
 			penanganan.setObat(obat);
-		
 			penangananService.addPenanganan(penanganan);
 		} else if(jenisPenanganan.equals("lab")) {
+			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
+			
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
 			penanganan.setRujukanRawatJalan(rujukan);
-			ObatModel obat = obatService.getObatById(idObat);
-			penanganan.setObat(obat);
-			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
+			
+			penanganan.setJenisPemeriksaan(idLab);
+			
 			String str = web.postLaboratoriumRequest(penanganan);
+			
 			penangananService.addPenanganan(penanganan);
 		}
 		
