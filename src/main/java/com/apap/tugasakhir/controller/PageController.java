@@ -35,4 +35,11 @@ public class PageController {
 	public String addPoli () {
 		return "add-poli";
 	}
+	@RequestMapping("/")
+	public ModelAndView redirect(HttpServletRequest request) {
+		if (request.isUserInRole("ROLE_ADMIN")) {
+			return new ModelAndView("redirect:/admin");
+		}
+		return new ModelAndView("redirect:/staff");
+	}
 }

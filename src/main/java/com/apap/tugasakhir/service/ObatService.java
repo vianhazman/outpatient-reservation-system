@@ -7,6 +7,7 @@ import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.model.PenangananModel;
 
 public interface ObatService {
+
 	List<ObatModel> getAllObatAvailable();
 	void addObat(ObatModel obat);
 }

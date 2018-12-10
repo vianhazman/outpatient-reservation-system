@@ -19,9 +19,11 @@ body {
   background: white;
   color: black;
 }
+
 #cariPasien {
   padding: 0% 3% 0% 3%;
 }
+
 #dashboard {
   color: #2f0743;
   text-align: center;
@@ -70,6 +72,7 @@ body {
     margin: 5% 5% 2% 5%;
   }
 }
+
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;

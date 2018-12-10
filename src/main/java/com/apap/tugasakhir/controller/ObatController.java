@@ -1,5 +1,6 @@
 package com.apap.tugasakhir.controller;
 
+
 import com.apap.tugasakhir.model.ObatModel;import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.rest.Setting;
@@ -27,6 +28,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+
+public class ObatController {
+	
+	@Autowired
+	private ObatService obatService;
+	
+	@Autowired
+	RestTemplate restTemplate;
+	
+	@Bean
+	public RestTemplate rest() {
+		return new RestTemplate();
+	}
+	
+	@GetMapping(value="/terima") 
+	public String getObat(@PathVariable("id") Long id) throws Exception {
+		String path = Setting.obatUrl;
+		return restTemplate.getForEntity(path, String.class).getBody();
+	}
+	
+	@GetMapping(value="/terima")
+	public ObatDetail tambahObat(@PathVariable("id") String id) throws Exception {
+		String path = Setting.obatUrl;
+		ObatModel obat = obatService.getObat();
+		ObatDetail detail = restTemplate.postForObject(path, obat, ObatDetail.class);
+		return detail;
+	}
+	 
+   
 @Controller
 public class ObatController {
 	@Autowired
@@ -41,4 +71,5 @@ public class ObatController {
 		obatService.addObat(obat);
 		return "";
 	}
+
 }
