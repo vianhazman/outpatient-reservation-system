@@ -2,45 +2,59 @@ package com.apap.tugasakhir.service;
 
 import java.util.List;
 
+//import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import com.apap.tugasakhir.model.PoliModel;
 import com.apap.tugasakhir.repository.PoliDB;
 
 @Service
 @Transactional
-public class PoliServiceImpl implements PoliService{
-	@Autowired 
-	private PoliDB poliDB;
+public class PoliServiceImpl implements PoliService {
+	
+	@Autowired
+	private PoliDB poliDb;
+
+	@Override
+	public PoliModel getPoliById(long id) {
+		return poliDb.findById(id);
+	}
+
+	@Override
+	public List<PoliModel> findAll() {
+		return poliDb.findAll();
+	}
 	
 	@Override
 	public void add(PoliModel poli) {
-		poliDB.save(poli);
+		poliDb.save(poli);
 	}
 	
 	@Override
 	public PoliModel getDetailById(Long id) {
-		return poliDB.getOne(id);
+		return poliDb.getOne(id);
 	}
 	
 	@Override
 	public List<PoliModel> getAllPoli() {
-		return poliDB.findAll();
+		return poliDb.findAll();
 	}
 	
 	@Override
 	public PoliModel getPoliDetailByNama(String nama) {
-		return poliDB.findByNama(nama);
+		return poliDb.findByNama(nama);
 	}
 	
 	@Override
 	public void update(PoliModel poli) {
-		PoliModel poliLama = poliDB.getOne(poli.getId());
+		PoliModel poliLama = poliDb.getOne(poli.getId());
 		poliLama.setNama(poli.getNama());
 		poliLama.setDeskripsi(poli.getDeskripsi());
-		poliDB.save(poli);
+		poliDb.save(poli);
 	}
 }
-

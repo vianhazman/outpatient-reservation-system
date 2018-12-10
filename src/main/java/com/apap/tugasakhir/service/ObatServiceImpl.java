@@ -20,8 +20,24 @@ public class ObatServiceImpl implements ObatService{
 	private ObatDB obatDb;
 	
 	@Override
-	public ObatModel getObat() {
-		return null;
+
+	public List<ObatModel> getAllObatAvailable() {
+		List<ObatModel> temp = obatDb.findAll();
+		List<ObatModel> result = obatDb.findAll();
+		result.clear();
+		for(int i = 0; i < temp.size(); i++) {
+			if(temp.get(i).getJumlah() > 0) {
+				result.add(temp.get(i));
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public void addObat(ObatModel obat) {
+		// TODO Auto-generated method stub
+		obatDb.save(obat);
+
 	}
 
 }

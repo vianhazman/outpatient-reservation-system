@@ -20,7 +20,8 @@
 </head>
 <head th:fragment="jquery">
 <script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/Chart.js}"></script>
+
+<script th:src="@{/js/global.js}" ></script>
 
 
 </head>
@@ -33,10 +34,22 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="/">Dashboard</a>
 				</li>
-				<a class="nav-link" th:href="@{'/rawat-jalan/pasien/'}">Rujukan Pasien</a>
+				 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Rujukan Pasien
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Lihat Semua Rujukan</a>
+                   <form autocomplete="off" action="/action_page.php">
+  <div id="cariPasien" class="autocomplete form-group" style="width:300px;">
+    <input class="form-control" id="myInput" type="text" name="myCountry" placeholder="Cari Pasien Rujukan">
+  </div>
+</form>
+  </div>
+      </li>
 				<a class="nav-link" href="#">Poliklinik</a>
 				<a class="nav-link" th:href="@{'/rawat-jalan/poli/jadwal'}">Penjadwalan</a>
-				<a class="nav-link" href="#">Penanganan</a>
+				<a class="nav-link" th:href="@{'/rawat-jalan/pasien/penanganan'}">Penanganan</a>
 			</button>
 				
 			</ul>

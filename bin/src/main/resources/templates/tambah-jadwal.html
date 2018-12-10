@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Tambah Jadwal</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<br>
+	<table align="center" cellpadding="10">
+
+		<tr>
+			<td>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h1>
+										<center>Tambah Jadwal
+									</h1>
+								</div>
+								<form th:action="@{/rawat-jalan/poli/jadwal/tambah}" th:object="${jadwal}"
+									method="POST">
+									<table width=500 cellpadding="10" style="margin-left:20px">
+										<br>
+										<tr>
+											<td>Poliklinik</td>
+											<td><select type="text" name="poli" id="poli">
+													<option th:each="poli : ${listPoli}"
+														th:value="${poli.id}"
+														th:text="${poli.nama}"></option>
+											</select></td>
+										</tr>
+										<tr>
+											<td>Tanggal</td>
+											<td><input type="date" name="tanggal" /></td>
+										</tr>
+										<tr>
+											<td>Jam Mulai</td>
+											<td><input type="time" name="jamMulai" /></td>
+										</tr>
+										<tr>
+											<td>Jam Selesai</td>
+											<td><input type="time" name="jamSelesai" /></td>
+										</tr>
+										<tr>
+											<td>Dokter</td>
+											<td><select type="text" name="dokter" id="dokter">
+													<option th:each="dokter : ${listDokter}"
+														th:value="${dokter.id}"
+														th:text="${dokter.nama}"></option>
+											</select></td>
+										</tr>
+									</table>
+									<br>
+									<center>
+										<button type="submit" class="btn btn-sm btn-success">Simpan</button>
+										<br>
+										<br>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>
