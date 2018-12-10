@@ -6,8 +6,7 @@
 <object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
 <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-<style>
-</style>
+
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<div class="container-fluid">
@@ -16,7 +15,7 @@
 					class="display-5"></h1>
 				<div>Sistem Informasi Rawat Jalan- Administrasi Poliklinik</div>
 	</div>
-		<div id="dashboard" class="shadow p-3 mb-5 bg-white rounded">
+		<div id="dashboard" class="shadow p-3 mb-5 bg-white rounded-10">
 		<div class="row">
 		<div class="col-md-4">
 		<p>Jumlah Pasien</p>
@@ -38,6 +37,7 @@
 		</div>
 	</div>
 </body>
+<script th:src="@{/js/Chart.js}"></script>
 <script th:src="@{/js/script.js}" >
 </script>
 </html>

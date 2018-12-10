@@ -35,6 +35,7 @@ public class PenangananController {
 	@Autowired
 	private RujukanRawatJalanService rujukanService;
 	
+
 	@RequestMapping(value = "/pasien/penanganan", method = RequestMethod.GET)
 	public String lihatPenanganan(Model model, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
 		
@@ -52,7 +53,7 @@ public class PenangananController {
 	
 	@RequestMapping(value = "/pasien/penanganan/tambah", method = RequestMethod.POST)
 	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan, @RequestParam("obat_id") Long idObat) {
-		
+
 		if(jenisPenanganan.equals("obat")) {
 			System.out.println(penanganan);
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
@@ -65,10 +66,7 @@ public class PenangananController {
 			penanganan.setRujukanRawatJalan(rujukan);
 			ObatModel obat = null;
 			penanganan.setObat(obat);
-			PostLaboratoriumWrapper req = new PostLaboratoriumWrapper();
-			req.setTanggal_pengajuan(penanganan.getWaktu());
-			req.setPasien(penanganan.getIdPasienRawatJalan());
-			String str = web.postLaboratoriumRequest(req);
+			String str = web.postLaboratoriumRequest(penanganan);
 			penangananService.addPenanganan(penanganan);
 		}
 		
