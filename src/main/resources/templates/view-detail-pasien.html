@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Detail Pasien</title>
+
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+<object th:include="fragments/fragment :: css_datatable" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js_datatable" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="container" style="margin-top: 30px">
+		<center>
+			<h2>Daftar Pasien Rawat Jalan</h2>
+		</center>
+		<div class="row">
+			<div class="col-3">
+				ID Pasien
+			</div>
+			<div class="col-6" th:text="${rujukan.idPasien}">
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				Nama Pasien
+			</div>
+			<div class="col-6" th:text="${rujukan.nama}">
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				Poli
+			</div>
+			<div class="col-6" th:text="${rujukan.jadwalPoli.poli.nama}">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				Jadwal
+			</div>
+			<div class="col-6" th:text="${rujukan.jadwalPoli.tanggal}">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				Tanggal Rujukan
+			</div>
+			<div class="col-6" th:text="${rujukan.tanggalRujuk}">
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				Status
+			</div>
+			<div class="col-6" th:text="${status[rujukan.status - 1]}">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

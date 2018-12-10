@@ -3,6 +3,7 @@
 <head>
 <head th:fragment="css">
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/global.css}">
 
 </head>
 <head th:fragment="js">
@@ -19,18 +20,25 @@
 </head>
 <head th:fragment="jquery">
 <script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/Chart.js}"></script>
+
 
 </head>
 </head>
 <body>
 	<nav th:fragment="navbar"
-		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		class="navbar navbar-expand-lg">
 		<a class="navbar-brand" href="#">RSCS</a>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				<li class="nav-item active"><a class="nav-link" href="/">Dashboard</a>
 				</li>
-				<a class="nav-link" href="#">Link</a>
+				<a class="nav-link" th:href="@{'/rawat-jalan/pasien/'}">Rujukan Pasien</a>
+				<a class="nav-link" href="#">Poliklinik</a>
+				<a class="nav-link" th:href="@{'/rawat-jalan/poli/jadwal'}">Penjadwalan</a>
+				<a class="nav-link" href="#">Penanganan</a>
+			</button>
+				
 			</ul>
 			<ul class="navbar-nav ml-auto">
 			<div class="dropdown">

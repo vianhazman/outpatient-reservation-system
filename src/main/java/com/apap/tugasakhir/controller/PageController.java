@@ -1,7 +1,9 @@
 package com.apap.tugasakhir.controller;
-
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class PageController {
@@ -24,5 +26,12 @@ public class PageController {
 	@RequestMapping("/rawat-jalan/poli/tambah")
 	public String addPoli () {
 		return "add-poli";
+	}
+	@RequestMapping("/")
+	public ModelAndView redirect(HttpServletRequest request) {
+		if (request.isUserInRole("ROLE_ADMIN")) {
+			return new ModelAndView("redirect:/admin");
+		}
+		return new ModelAndView("redirect:/staff");
 	}
 }

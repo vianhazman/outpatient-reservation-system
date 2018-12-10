@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Detail Pasien</title>
+
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+<object th:include="fragments/fragment :: css_datatable" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js_datatable" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="container" style="margin-top: 30px">
+		<center>
+			<h1>Daftar Pasien Rawat Jalan</h1>
+		</center>
+			<table id="datatable" cellpadding="0" cellspacing="0" border="0"
+				class="display datatable">
+
+				<thead>
+					<tr>
+						<th>Nama</th>
+						<th>Id</th>
+						<th>Tanggal Rujukan</th>
+						<th>Status</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody id="itemsoutput">
+					<tr th:each="rujukan : ${listRujukan}">
+						<th th:text="${rujukan.nama}"></th>
+						<th th:text="${rujukan.idPasien}"></th>
+						<th th:text="${rujukan.tanggalRujuk}"></th>
+						<th th:text="${statusPasien[rujukan.status]}"></th>
+						<th>
+						<div th:if="${statusPasien[rujukan.status]!='Selesai'}">
+													<a th:href="@{'/rawat-jalan/pasien/ubah?idPasien=' + ${rujukan.idPasien}+'&idRujukan=' + ${rujukan.id}}">Ubah Status</a>
+													
+						</div>
+						</th>
+					</tr>
+				</tbody>
+			</table>
+
+
+	</div>
+	
+	
+	
+</body>
+
+<style type="text/css">
+<!--
+.dataTables_filter {
+	position: relative;
+	left: -40px;
+}
+-->
+</style>
+<script th:inline="javascript">
+$(document).ready(function() {
+    $('#datatable').DataTable();
+} );
+function changeStatus(index) {
+	$.ajax({
+		  type: "GET",
+		  url: "/rawat-jalan/pasien/",
+		  success: function(data){
+		     $("#resultarea").text(data);
+		  }
+		});
+}
+</script>
+
+</html>

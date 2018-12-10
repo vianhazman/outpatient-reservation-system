@@ -31,11 +31,8 @@
                             <tr>
                                 <td th:text="${poli.nama}"></td>
                                 <td th:text="${poli.deskripsi}"></td>
-                                <td>
-                                <ul th:each="hari : ${poli.daftarHariPoli}">
-                                <li th:text="${hari.hari}"></li>
-                                </ul>
-                                </td>
+                                <div th:each="hari : ${poli.daftarHariPoli}"></div>
+                                <td th:text="${hari.hari}"></td>
                                 <td> <div class="btn-toolbar">
 							  		<div class="btn-group mr-2" role="group" aria-label="First group">
 								    	<form th:action="@{/rawat-jalan/poli/ubah}" method="GET">
