@@ -3,6 +3,7 @@
 <head>
 <head th:fragment="css">
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/global.css}">
 
 </head>
 <head th:fragment="js">
@@ -20,17 +21,38 @@
 <head th:fragment="jquery">
 <script th:src="@{/js/jquery.min.js}"></script>
 
+<script th:src="@{/js/global.js}" ></script>
+
+
 </head>
 </head>
 <body>
 	<nav th:fragment="navbar"
-		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		class="navbar navbar-expand-lg">
+		
 		<a class="navbar-brand" href="#">RSCS</a>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				<li class="nav-item active"><a class="nav-link" href="/">Dashboard</a>
 				</li>
-				<a class="nav-link" href="#">Link</a>
+				 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Rujukan Pasien
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{'/rawat-jalan/pasien'}">Lihat Semua Rujukan</a>
+                   <form autocomplete="off" action="/action_page.php">
+  <div id="cariPasien" class="autocomplete form-group" style="width:300px;">
+    <input class="form-control" id="myInput" type="text" name="myCountry" placeholder="Cari Pasien Rujukan">
+  </div>
+</form>
+  </div>
+      </li>
+				<a class="nav-link" th:href="@{'/rawat-jalan/poli'}">Poliklinik</a>
+				<a class="nav-link" th:href="@{'/rawat-jalan/poli/jadwal'}">Penjadwalan</a>
+				<a class="nav-link" th:href="@{'/rawat-jalan/pasien/penanganan'}">Penanganan</a>
+			</button>
+				
 			</ul>
 			<ul class="navbar-nav ml-auto">
 			<div class="dropdown">

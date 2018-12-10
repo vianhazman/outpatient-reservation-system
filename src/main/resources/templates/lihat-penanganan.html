@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Lihat Riwayat Penanganan - SI Rawat Jalan</title>	
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+		<div class="container">
+			<br>
+			<h1 th:text="'Lihat Riwayat Penanganan ' + ${pasien.nama}"></h1>			
+			<br>
+			<div class="row">
+				<div class="col-4">
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#penangananObat">Tambah Penanganan</button>
+				</div>
+				
+				<div class="modal fade" id="penangananObat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel" th:text="'Tambah Penanganan ' + ${pasien.nama}"></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <form th:action="@{/rawat-jalan/pasien/penanganan/tambah}" th:object="${penanganan}" method="POST">
+				      	<div class="modal-body">
+						  <div class="form-group">
+						    <label for="input_obat">Jenis Penanganan</label>
+						    <select name="jenis_penanganan" class="form-control" id="input_obat" required>
+						      <option value="obat">Obat</option>
+						      <option value="lab">Pemeriksaan Lab</option>
+						    </select>
+						  </div>
+						  <div class="form-group">
+						    <label for="input_id">ID Pasien</label>
+						    <input type="text" name="id_pasien_rawat_jalan" class="form-control" id="input_id" th:value="${pasien.id}" readonly>
+						  </div>
+						  <div class="form-group">
+						    <label for="input_waktu">Waktu</label>
+						    <input type="time" name="waktu" class="form-control" id="input_waktu" required>
+						  </div>
+						  <div class="form-group">
+						    <label for="input_obat">Obat</label>
+						    <select name="id_obat" class="form-control" id="input_obat">
+						      <option th:each="obat : ${daftarObat}" th:text="${obat.nama}" th:value="${obat.id}"></option>
+						    </select>
+						  </div>
+						  <div class="form-group">
+						    <label for="input_lab">Lab</label>
+						    <select name="id_lab" class="form-control" id="input_obat">
+						      <option value="lab_umum">lab_umum</option>
+						      <option value="lab_khusus">lab_khusus</option>
+						    </select>
+						  </div>
+						  <div class="form-group">
+						    <label for="input_deskripsi">Deskripsi</label>
+						    <textarea name="deskripsi" class="form-control" id="input_deskripsi" rows="3" required></textarea>
+						  </div>
+				      	</div>
+				      	<div class="modal-footer">
+				        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+				        	<button type="submit" class="btn btn-success">Simpan</button>
+				      	</div>  
+					  </form>
+				    </div>
+				  </div>
+				</div>
+			</div>
+			
+			<br>
+			<div class="row">
+				<table class="table table-hover">
+					<thead class="thead-light">
+				    	<tr>
+				      		<th scope="col">ID Pasien Rawat Jalan</th>
+						    <th scope="col">Nama Pasien</th>
+						    <th scope="col">Poli</th>
+						    <th scope="col">Waktu</th>
+						    <th scope="col">Jenis Penanganan</th>
+						    <th scope="col">Deskripsi</th>
+				    	</tr>
+				  	</thead>
+				  	<tbody>
+				    	<tr th:each="penanganan : ${daftarPenanganan}">
+				      		<th th:text="${idPasien}" scope="row"></th>
+				      		<td th:text="${pasien.nama}"></td>
+				      		<td th:text="${penanganan.rujukanRawatJalan.jadwalPoli.poli.nama}"></td>
+				      		<td th:text="${penanganan.waktu}"></td>
+				      		<td th:text="${penanganan.obat.nama}"></td>
+				      		<td th:text="${penanganan.deskripsi}"></td>
+				    	</tr>
+				  	</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

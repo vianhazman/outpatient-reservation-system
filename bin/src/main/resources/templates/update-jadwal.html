@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+<title>Update Jadwal</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+	<br>
+	<table align="center" cellpadding="10">
+		<tr>
+			<td>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h1>
+										<center>Ubah Jadwal
+									</h1>
+								</div>
+								<form
+									th:action="@{'/rawat-jalan/poli/jadwal/ubah/' + ${jadwal.id}}"
+									th:object="${jadwal}" method="POST">
+									<table width=500 cellpadding="10" style="margin-left: 30px;">
+										<br>
+										<tr>
+											<td>Nama Poliklinik:</td>
+											<td><select type="text" name="poli">
+													<option th:each="poli : ${listPoli}"
+														th:value="${poli.id}" th:text="${poli.nama}"th:field="*{poli}"></option>
+											</select></td>
+										</tr>
+										<tr>
+											<td>Nama Dokter:</td>
+											<td><select type="text" name="dokter">
+													<option th:each="dokter : ${listDokter}"
+														th:value="${dokter.id}" th:text="${dokter.nama}" th:field="*{dokter}"></option>
+											</select></td>
+										</tr>
+										<tr>
+											<td>Tanggal:</td>
+											<td><input type="date" class="form-control"
+												id="tanggal" name="tanggal" th:field="*{tanggal}"
+												th:value="${jadwal.tanggal}"></td>
+										</tr>
+										<tr>
+											<td>Jam Mulai:</td>
+											<td><input type="time" class="form-control"
+												id="jamMulai" name="jamMulai" th:field="*{jamMulai}"
+												th:value="${jadwal.jamMulai}"></td>
+										</tr>
+										<tr>
+											<td>Jam Selesai:</td>
+											<td><input type="time" class="form-control"
+												id="jamSelesai" name="jamSelesai" th:field="*{jamSelesai}"
+												th:value="${jadwal.jamSelesai}"></td>
+										</tr>
+									</table>
+									<br>
+									<center>
+										<button type="submit" class="btn btn-sm btn-success">Simpan</button>
+										<br> <br>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
