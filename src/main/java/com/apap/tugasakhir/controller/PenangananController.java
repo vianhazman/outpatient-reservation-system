@@ -1,11 +1,10 @@
 package com.apap.tugasakhir.controller;
 
 
-import com.apap.tugasakhir.model.PenangananModel;
-import com.apap.tugasakhir.service.PenangananService;
-
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +26,8 @@ import com.apap.tugasakhir.service.RujukanRawatJalanService;
 @Controller
 @RequestMapping("/rawat-jalan")
 public class PenangananController {
+	
+	
 	@Autowired
 	webService web;
 	
@@ -42,14 +43,17 @@ public class PenangananController {
 
 	@RequestMapping(value = "/pasien/penanganan", method = RequestMethod.GET)
 	public String lihatPenanganan(Model model, @RequestParam Long idPasienRawatJalan) {
-		
+		String[] arrLab = {
+				"Darah", "Urin", "Mukus","Sample Kulit"
+		        };
+
 		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
 		List<PenangananModel> daftarPenangananPasien = penangananService.getAllPenanganan(idPasienRawatJalan);
 		
 		List<ObatModel> daftarObatAvailable = obatService.getAllObatAvailable();
 		
-		model.addAttribute("idPasien", idPasienRawatJalan);
 		model.addAttribute("pasien", pasienRawatJalan);
+		model.addAttribute("arrLab", arrLab);
 		model.addAttribute("daftarPenanganan", daftarPenangananPasien);
 		model.addAttribute("daftarObat", daftarObatAvailable);
 		
@@ -58,18 +62,38 @@ public class PenangananController {
 	
 
 	@RequestMapping(value = "/pasien/penanganan/tambah", method = RequestMethod.POST)
-	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
-		
+	public String tambahPenanganan(Model model,@ModelAttribute PenangananModel penanganan, @RequestParam("jenis_penanganan") String jenisPenanganan, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan, @RequestParam("obat_id") Long idObat, @RequestParam("id_lab") int idLab) {
+
 		if(jenisPenanganan.equals("obat")) {
+			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
+			
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
 			penanganan.setRujukanRawatJalan(rujukan);
+			ObatModel obat = obatService.getObatById(idObat);
+			penanganan.setObat(obat);
 			penangananService.addPenanganan(penanganan);
 		} else if(jenisPenanganan.equals("lab")) {
+			penanganan.setIdPasienRawatJalan(idPasienRawatJalan.intValue());
+			
 			RujukanRawatJalanModel rujukan = rujukanService.getRujukanByIdPasien(idPasienRawatJalan);
 			penanganan.setRujukanRawatJalan(rujukan);
+			
+			penanganan.setJenisPemeriksaan(idLab);
+			
+			System.out.println(web.postLaboratoriumRequest(penanganan));
+			
 			penangananService.addPenanganan(penanganan);
 		}
 		
-		return "lihat-penanganan";
+		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
+		List<PenangananModel> daftarPenangananPasien = penangananService.getAllPenanganan(idPasienRawatJalan);
+		
+		List<ObatModel> daftarObatAvailable = obatService.getAllObatAvailable();
+		
+		model.addAttribute("pasien", pasienRawatJalan);
+		model.addAttribute("daftarPenanganan", daftarPenangananPasien);
+		model.addAttribute("daftarObat", daftarObatAvailable);
+		
+		return "redirect:/rawat-jalan/pasien/penanganan?idPasienRawatJalan="+idPasienRawatJalan;
 	}
 }
