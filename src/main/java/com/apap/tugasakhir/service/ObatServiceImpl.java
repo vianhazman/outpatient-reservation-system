@@ -34,8 +34,12 @@ public class ObatServiceImpl implements ObatService{
 
 	@Override
 	public void addObat(ObatModel obat) {
-		// TODO Auto-generated method stub
-		obatDb.save(obat);
+		ObatModel obatLama = obatDb.findById(obat.getId()).get();
+		if(obatLama == null) {
+			obatDb.save(obat);
+		} else {
+			obatLama.setJumlah(obatLama.getJumlah() + obat.getJumlah());
+		}
 	}
 
 	@Override
