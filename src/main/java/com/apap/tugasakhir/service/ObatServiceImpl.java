@@ -40,4 +40,10 @@ public class ObatServiceImpl implements ObatService{
 
 	}
 
+	@Override
+	public ObatModel getObatById(long id) {
+		// TODO Auto-generated method stub
+		return obatDb.findById(id).get();
+	}
+
 }

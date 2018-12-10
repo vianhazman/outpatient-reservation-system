@@ -1,19 +1,11 @@
 package com.apap.tugasakhir.wrapper;
 
+import java.io.Serializable;
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-public class PostLaboratoriumWrapper {
-	private long id;
+public class PostLaboratoriumWrapper implements Serializable {
 	private Date tanggalPengajuan;
 	private long idPasien;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public Date getTanggalPengajuan() {
 		return tanggalPengajuan;
 	}
@@ -26,13 +18,12 @@ public class PostLaboratoriumWrapper {
 	public void setIdPasien(long idPasien) {
 		this.idPasien = idPasien;
 	}
-	public Map<String, Long> getJenisPemeriksaan() {
+	public GetJenisPemeriksaanWrapper getJenisPemeriksaan() {
 		return jenisPemeriksaan;
 	}
-	public void setJenisPemeriksaan(long id) {
-		this.jenisPemeriksaan = new HashMap<String,Long>();
-		this.jenisPemeriksaan.put("id", id);
+	public void setJenisPemeriksaan(GetJenisPemeriksaanWrapper jenisPemeriksaan) {
+		this.jenisPemeriksaan =jenisPemeriksaan;
 	}
-	private Map<String,Long> jenisPemeriksaan;
+	private GetJenisPemeriksaanWrapper jenisPemeriksaan;
 }
 
