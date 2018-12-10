@@ -33,16 +33,12 @@ public class PasienController {
 		for (PasienModel pasien : draftPasien) {
 			if (rujukanService.getRujukanByIdPasienAndTanggalRujukan(pasien.getId(), pasien.getTanggalRujukan()) == null && pasien.getStatusPasien().getId() > 6) {
 				RujukanRawatJalanModel newRujukan = new RujukanRawatJalanModel();
-				System.out.println("ID: "+pasien.getStatusPasien().getId());
 				newRujukan.setStatus((int)pasien.getStatusPasien().getId()-(int)7);
-				System.out.println(newRujukan.getStatus()+pasien.getNama());
 				newRujukan.setPasien(pasien.getId());
 				newRujukan.setNama(pasien.getNama());
+				//newRujukan.getJadwalPoli().setPoli(pasien.getPoliRujukan());
 				long selisih = Integer.MAX_VALUE;
 				JadwalPoliModel poli = new JadwalPoliModel();
-
-				//for (JadwalPoliModel jadwal:polidb.findById(pasien.getPoliRujukan().getId()).getDaftarJadwalPoli()) {
-
 				for (JadwalPoliModel jadwal : poliService.getPoliById(pasien.getPoliRujukan().getId()).getDaftarJadwalPoli()) {
 					long sub = jadwal.getTanggal().getTime() - pasien.getTanggalRujukan().getTime();
 					if (sub < selisih) {
@@ -72,7 +68,7 @@ public class PasienController {
 		List<PasienModel> draftPasien = web.getAllPasienRawatJalan();
 		  for (PasienModel pasien : draftPasien) {
 		   if (pasien.getId() == id) {
-			   pasien.getStatusPasien().setId(rujukan.getStatus()+6);
+			   pasien.getStatusPasien().setId(rujukan.getStatus()+7);
 			   System.out.println(web.updatePasien(pasien));
 			   break;
 		   }
@@ -86,6 +82,8 @@ public class PasienController {
 	private String detailPasienRawatJalan(@PathVariable (value="idRujukan") long id, Model model) {
 		String[]listStatus = new String[] {"Mendaftar di IGD","Berada di IGD", "Selesai di IGD","Mendaftar di Rawat Inap","Berada di Rawat Inap",
 				"Selesai di Rawat Inap","Mendaftar di Rawat Jalan","Berada di Rawat Jalan","Selesai di Rawat Jalan"};
+		model.addAttribute("jadwalFix",rujukanService.changeTanggal(rujukanService.getRujukanById(id).getJadwalPoli().getTanggal()));
+		model.addAttribute("tanggalFix",rujukanService.changeTanggal(rujukanService.getRujukanById(id).getTanggalRujuk()));
 		model.addAttribute("rujukan",rujukanService.getRujukanById(id));
 		model.addAttribute("status",listStatus);
 		System.out.println(rujukanService.getRujukanById(id));

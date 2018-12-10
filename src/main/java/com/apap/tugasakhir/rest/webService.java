@@ -93,4 +93,10 @@ public class webService {
 			return obat;
 		}
 		
+		//get pasien rawat jalan si igd
+		public List<PasienModel> getPasienRawatJalanFromIgd() {
+			String path = Setting.igdUrl;
+			List<PasienModel> returnList = restTemplate.getForEntity(path, GetPasienWrapper.class).getBody().getResult();
+			return returnList;
+		}
 }

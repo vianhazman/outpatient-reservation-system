@@ -12,4 +12,5 @@ public interface RujukanRawatJalanService {
 	List<RujukanRawatJalanModel> getAllRujukan();
 	RujukanRawatJalanModel getRujukanByIdPasienAndTanggalRujukan(long idPasien, Date tanggalRujuk);
 	RujukanRawatJalanModel saveRujukan(RujukanRawatJalanModel rujukan);
+	String changeTanggal(Date tanggal);
 }

@@ -15,7 +15,7 @@
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<div class="container" style="margin-top: 30px">
 		<center>
-			<h1>Daftar Pasien Rawat Jalan</h1>
+			<h2>Daftar Pasien Rawat Jalan</h2>
 		</center>
 			<table id="datatable" cellpadding="0" cellspacing="0" border="0"
 				class="display datatable">
@@ -32,16 +32,15 @@
 
 				<tbody id="itemsoutput">
 					<tr th:each="rujukan : ${listRujukan}">
-						<th th:text="${rujukan.nama}"></th>
-						<th th:text="${rujukan.idPasien}"></th>
-						<th th:text="${rujukan.tanggalRujuk}"></th>
-						<th th:text="${statusPasien[rujukan.status]}"></th>
-						<th>
+						<td><a th:text="${rujukan.nama}" th:href="@{'/rawat-jalan/pasien/' + ${rujukan.id}}"></a></td>
+						<td th:text="${rujukan.idPasien}"></td>
+						<td th:text="${rujukan.tanggalRujuk}"></td>
+						<td th:text="${statusPasien[rujukan.status]}"></td>
+						<td>
 						<div th:if="${statusPasien[rujukan.status]!='Selesai'}">
-													<a th:href="@{'/rawat-jalan/pasien/ubah?idPasien=' + ${rujukan.idPasien}+'&idRujukan=' + ${rujukan.id}}">Ubah Status</a>
-													
+							<a th:href="@{'/rawat-jalan/pasien/ubah?idPasien=' + ${rujukan.idPasien}+'&idRujukan=' + ${rujukan.id}}">Ubah Status</a>							
 						</div>
-						</th>
+						</td>
 					</tr>
 				</tbody>
 			</table>

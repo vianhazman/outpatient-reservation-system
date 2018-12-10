@@ -49,4 +49,13 @@ public class RujukanRawatJalanServiceImpl implements RujukanRawatJalanService{
 	public RujukanRawatJalanModel saveRujukan(RujukanRawatJalanModel rujukan) {
 		return rujukanDb.save(rujukan);
 	}
+	
+	@Override public String changeTanggal(Date tanggal) {
+		String[]listBulan = new String[] {"Januari","Februari","Maret","April","Mei","Juni","Juli"
+				,"Agustus","September","Oktober","November","Desember"};
+		String date = tanggal + "";
+		String bulan = date.substring(5, 7);
+		String finalDate = date.substring(8) + " " + listBulan[Integer.parseInt(bulan)-1] + " " + date.substring(0,4);
+		return finalDate;
+	}
 }
