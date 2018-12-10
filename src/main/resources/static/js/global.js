@@ -1,6 +1,8 @@
 $(document).ready(function() {
   $("#dashboard").show();
+$('body').addClass('large-background');
 });
+
 $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
   console.log(data[0]);
   var nama = [];
@@ -12,7 +14,7 @@ $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
   });
   function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
-      the text field element and an array of possible autocompleted values:*/
+    the text field element and an array of possible autocompleted values:*/
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function(e) {
@@ -51,7 +53,7 @@ $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
                 index[this.getElementsByTagName("input")[0].value]
             );
             /*close the list of autocompleted values,
-                  (or any other open lists of autocompleted values:*/
+                (or any other open lists of autocompleted values:*/
             closeAllLists();
           });
           a.appendChild(b);
@@ -64,14 +66,14 @@ $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
-            increase the currentFocus variable:*/
+          increase the currentFocus variable:*/
         currentFocus++;
         /*and and make the current item more visible:*/
         addActive(x);
       } else if (e.keyCode == 38) {
         //up
         /*If the arrow UP key is pressed,
-            decrease the currentFocus variable:*/
+          decrease the currentFocus variable:*/
         currentFocus--;
         /*and and make the current item more visible:*/
         addActive(x);
@@ -102,7 +104,7 @@ $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
     }
     function closeAllLists(elmnt) {
       /*close all autocomplete lists in the document,
-        except the one passed as an argument:*/
+      except the one passed as an argument:*/
       var x = document.getElementsByClassName("autocomplete-items");
       for (var i = 0; i < x.length; i++) {
         if (elmnt != x[i] && elmnt != inp) {
@@ -116,8 +118,4 @@ $.get("/rawat-jalan/poli/pasien/nama-pasien-rujukan", function(data) {
     });
   }
   autocomplete(document.getElementById("myInput"), nama);
-});
-$(document).ready(function() {
-	
-    $('body').addClass('large-background');
 });
