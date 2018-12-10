@@ -3,6 +3,9 @@ package com.apap.tugasakhir.wrapper;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class PostLaboratoriumWrapper implements Serializable {
 	private Date tanggalPengajuan;
 	private long idPasien;
@@ -25,5 +28,9 @@ public class PostLaboratoriumWrapper implements Serializable {
 		this.jenisPemeriksaan =jenisPemeriksaan;
 	}
 	private GetJenisPemeriksaanWrapper jenisPemeriksaan;
+	
+	public String toString() {
+		return "id: "+this.getIdPasien()+" jenis: "+this.getJenisPemeriksaan().getId()+" tanggal: "+this.getTanggalPengajuan().toString();
+	}
 }
 

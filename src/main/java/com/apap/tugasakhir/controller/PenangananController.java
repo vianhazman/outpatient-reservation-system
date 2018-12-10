@@ -1,11 +1,10 @@
 package com.apap.tugasakhir.controller;
 
 
-import com.apap.tugasakhir.model.PenangananModel;
-import com.apap.tugasakhir.service.PenangananService;
-
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,11 +22,12 @@ import com.apap.tugasakhir.rest.webService;
 import com.apap.tugasakhir.service.ObatService;
 import com.apap.tugasakhir.service.PenangananService;
 import com.apap.tugasakhir.service.RujukanRawatJalanService;
-import com.apap.tugasakhir.wrapper.PostLaboratoriumWrapper;
 
 @Controller
 @RequestMapping("/rawat-jalan")
 public class PenangananController {
+	
+	
 	@Autowired
 	webService web;
 	
@@ -43,13 +43,17 @@ public class PenangananController {
 
 	@RequestMapping(value = "/pasien/penanganan", method = RequestMethod.GET)
 	public String lihatPenanganan(Model model, @RequestParam Long idPasienRawatJalan) {
-		
+		String[] arrLab = {
+				"Darah", "Urin", "Mukus","Sample Kulit"
+		        };
+
 		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
 		List<PenangananModel> daftarPenangananPasien = penangananService.getAllPenanganan(idPasienRawatJalan);
 		
 		List<ObatModel> daftarObatAvailable = obatService.getAllObatAvailable();
 		
 		model.addAttribute("pasien", pasienRawatJalan);
+		model.addAttribute("arrLab", arrLab);
 		model.addAttribute("daftarPenanganan", daftarPenangananPasien);
 		model.addAttribute("daftarObat", daftarObatAvailable);
 		
@@ -76,7 +80,7 @@ public class PenangananController {
 			
 			penanganan.setJenisPemeriksaan(idLab);
 			
-			String str = web.postLaboratoriumRequest(penanganan);
+			System.out.println(web.postLaboratoriumRequest(penanganan));
 			
 			penangananService.addPenanganan(penanganan);
 		}
@@ -90,6 +94,6 @@ public class PenangananController {
 		model.addAttribute("daftarPenanganan", daftarPenangananPasien);
 		model.addAttribute("daftarObat", daftarObatAvailable);
 		
-		return "lihat-penanganan";
+		return "redirect:/rawat-jalan/pasien/penanganan?idPasienRawatJalan="+idPasienRawatJalan;
 	}
 }

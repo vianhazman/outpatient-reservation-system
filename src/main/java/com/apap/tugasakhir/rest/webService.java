@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
+
 import com.apap.tugasakhir.model.DokterModel;
 import com.apap.tugasakhir.model.PasienModel;
 import com.apap.tugasakhir.model.PenangananModel;
@@ -78,8 +79,7 @@ public class webService {
 			obj.setJenisPemeriksaan(jenis);
 			obj.setTanggalPengajuan(req.getWaktu());
 			String path =Setting.postLab;
-			String str = restTemplate.postForEntity(path, req, String.class).getBody();
-			System.out.println("SUCCESS");
+			String str = restTemplate.postForEntity(path,obj, String.class).getBody();
 			return str;
 		}
 		
