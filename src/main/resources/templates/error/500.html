@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>500 Failed Server</title>
-		<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    	
-    	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    	<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
-    	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
-	</head>
- 	<body>
- 		<nav th:replace="fragments/fragment" :: navbar></nav>
-		<h1>Server tidak merespon</h1>
- 	</body>
+
+<head>
+<title>500 Internal Server Error</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="container-fluid">
+		<div class="jumbotron" style="margin-top: 1%;">
+			<div class="container">
+				<h1 class="display-5">Halaman tidak dapat diakses</h1>
+				<div>Maaf, untuk saat ini halaman yang anda cari tidak dapat diakses.</div>
+			</div>
+		</div>
+		<div class="row"></div>
+	</div>
+</body>
 </html>
