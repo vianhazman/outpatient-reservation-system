@@ -41,7 +41,7 @@ public class PenangananController {
 	
 
 	@RequestMapping(value = "/pasien/penanganan", method = RequestMethod.GET)
-	public String lihatPenanganan(Model model, @RequestParam("id_pasien_rawat_jalan") Long idPasienRawatJalan) {
+	public String lihatPenanganan(Model model, @RequestParam Long idPasienRawatJalan) {
 		
 		PasienModel pasienRawatJalan = web.getPasien(idPasienRawatJalan);
 		List<PenangananModel> daftarPenangananPasien = penangananService.getAllPenanganan(idPasienRawatJalan);
